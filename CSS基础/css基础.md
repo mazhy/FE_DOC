@@ -264,23 +264,164 @@ p.serif{font-family:"Times New Roman",Times,serif;}
 p.sansserif{font-family:Arial,Helvetica,sans-serif;}
 ```
 
+####	font-size文字大小
+定义元素内文字大小: font-size: 绝对单位 | 相对单位
+
++	开发中没有用绝对单位的cm之类的
++ 	相对单位 px, em , % => 见名知意
+
+####	color文字颜色
+定义元素内文字颜色: color: 颜色名 | 十六进制 | RGB
+
+####	文字粗细
++	为元素内文字设置粗细
++	语法
+	-	font-weight: normal | bold | bolder | lighter | 100~900
+	- 	默认值 normal
+	-  400 等同于normal
+	-  700 等同于bold
+	-  根据浏览器 设备原因, 某些数值看起来并没有区别
+
+####	font-style 文字样式
+为元素内文字设置样式: font-style: normal | italic | oblique
+
+####	font-variant字体变形
+设置元素中文本为小型大写字母: font-variant: normal | small-caps
+
+####	font属性(简写)
++	font: font-style font-variant font-weight font-size/line-height font-family
++ 	值之间空格隔开
++  注意书写顺序
+
+##	css文本样式
+###	text-align
++	设置元素内文本的水平对齐方式
++ 	text-align: left, right, center, justify
++  该属性对块级元素设置有效
+
+###	line-height属性
++	设置元素中文本行高
++ 	line-height: 长度值 | 百分比
++  一行文字的高度, 行高指文本行的基线间的距离
++  基线并不是汉字文字的下沿
+
+![](./line.png)
+
+####	行高和行距
+![](./height.png)
+
+###	vertical-align属性
++	设置元素内容的垂直方式
++	vertical-align: baseline | sub | super | top | text-top | middle | bottom | text-bottom | 长度 | 百分比
+
+![](./vertical.png)
+
+### css文本样式属性
+| 字体属性 | 描述 | 
+| :-- | : -- |
+| word-spacing | 设置元素内单词之间的间距 |
+|letter-spacing | 设置元素内字母之间间距 |
+| text-transform | 设置元素内文本的大小写capitalize | uppercase | lowercase | none |
+|text-decoration | 设置元素内文本的装饰 underline | overline | line-through | blink | none |
 
 
+##	盒子模型
+
+![](./box.png)
+
+###	宽度
++	宽度: width: 长度值 | 百分比 | auto
++ 	最大宽度: max-width: 长度值 | 百分比 | auto
++  最小宽度: min-width: 长度值 | 百分比 | auto
+
+###	高度
++	高度: height: 长度值 | 百分比 | auto
++ 	最大高度: max-height: 长度值 | 百分比 | auto
++  最小高度: min-height: 长度值 | 百分比 | auto
+
+###	哪些html元素可以设置高和宽
++	块级元素
+	-	p, div, h1~h6, ul, li, ol, dl , dt, dd......
++	替换元素(行内元素)
+	-	img, input, textarea...
+
+###	边框属性
++	边框宽度: border-width: thin | medium | thick | 长度值
++ 	边框颜色: border-color: 颜色 | transparent
++  边框样式: border-style: 值 | none | hidden
+
+| 值| 描述 | 
+| :-- | :-- |
+|none | 定义无边框, 默认值 | 
+|hidden | 与none相同, 除非在表格元素中解决边框冲突时 | 
+|dotten | 定义点状边框, 在大多数浏览器中是取为实线 | 
+|dashed|定义虚线, 在大多数浏览器中取为实线 | 
+|solid | 定义实线 | 
+|double| 定义双线 | 
+
+####	不同方向表示
+border-[left | right | top | bottom]-width | color | style
+
+####	边框缩写
+border:[宽度] [样式] [颜色]
+
+#####	不同方向
+border-top | left | right | bottom: [宽度] [样式] [颜色]
 
 
+###	内边距
++	设置元素的内容与边框之间的距离
++	padding-top| left | right | bottom: 长度值 | 百分比 (值不能为负值)
+
+####	缩写
++	padding: 值1 // 4个方向都是值1
++	padding: 值1 值2 // 上下=值1, 左右=值2
++ 	padding: 值1 值2 值3 // 上=值1, 左右=值2, 下=值3
++  padding: 值1 值2 值3 值4 // 上=值1, 右=值2, 下=值3, 左=值4
+
+###	外边距
++	设置元素与元素之间的距离
++ 	margin-top| left | right | bottom: 长度值 | 百分比 (值可以能为负值)
+
+####	缩写
++	margin: 值1 // 4个方向都是值1
++	margin: 值1 值2 // 上下=值1, 左右=值2
++ 	margin: 值1 值2 值3 // 上=值1, 左右=值2, 下=值3
++  margin: 值1 值2 值3 值4 // 上=值1, 右=值2, 下=值3, 左=值4
+
+####	外边距属性
++	默认情况下, 相应html块级元素存在外边距(body, h1~h6,p......)
++ 	声明margin属性, 覆盖默认样式
+	-	body, h1,...{margin:0}
+
++	margin值为auto, 实现水平方向居中显示效果
++ 	垂直方向, 两个相邻元素都设置外边距, 外边距会发生合并
++  合并后外边距高度=两个发生合并外边距的高度中的最大值
+
+###	盒子模型计算
++	在css中, width和height指的是内容区域的宽度和高度
++ 	增加内边距, 边框,外边距不会影响内容区域的尺寸
++  但会增加元素框的总尺寸
++  盒子在页面中所占的宽度 = 左边距+左边框+左填充 + 内容宽度 +右填充+右边框+右边距
 
 
+####	display属性
++	inline
+	-	元素将显示为内联元素, 元素前后没有换行符
++	block
+	-	元素将显示为块级元素, 元素前后会带有换行符
++	inline-block
+	-	行内快元素, 元素呈现为inline, 具有block相应特性
++	none
+	-	此元素不会被显示
 
-
-
-
-
-
-
-
-
-
-
+###	样式继承关系
+|样式属性 | 继承 | 说明 | 
+| :-- | :-- | :-- |
+|width, height | 不继承, 块级元素, 替换元素 | 对于样式属性, 通过设置值为inherit,指定从父元素继承相对的属性值
+|padding | 不继承 | div{padding: 10px;} |
+|margin | 不继承 | div p{padding:inherit;}|
+|border| 不继承| 
 
 
 

@@ -304,11 +304,19 @@ HTML (Hypertext Markup Language) 即超文本标记语言
 +	块级标签: 占据一行 换行
 + 	行内标签: 在一行	不换行
 
+####	区别
++	从显示效果来看
+	-	块级元素会独占一行, 其宽度自动填满其父元素宽度
+	- 	行内元素不会独占一行, 相邻的行内元素会排列在同一行里, 知道一行排不下, 才会换行, 其宽度随元素的内容而变化
++	块级元素可以设置width, height属性, 行内元素设置width, height无效(块级元素设置了宽度, 但是还是独占一行)
++ 	块级元素可以设置margin和padding, 行内元素水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效应, 但是竖直方向的padding-top, padding-bottom, margin-top, margin-bottom都不会产生边距效果
+	-	水平方向有效, 竖直方向无效
+
 ###	常用的块级元素
-div, ul, ol, li, dl, dt, dd, h1~h6, p, form , hr......
+div, ul, ol, li, dl, dt, dd, h1~h6, p, form , address, fieldset, menu, table  hr......
 
 ###	常用的行内元素
-b, em, img, input, a, sup, sub, textarea, span......
+b, em, img, input, a, sup, sub,strong, br, label, select,cite, textarea, span......
 
 ## 标签嵌套规则
 +	块级元素可包含行内元素和某些块级元素
