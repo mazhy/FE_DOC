@@ -521,12 +521,113 @@ list-style: list-style-type list-style-position list-style-image
 + 	顺序不固定
 +  list-style-image 会覆盖list-style-type的设置
 
+##	定位Position
++	static  自然模型
++ 	relative	相对定位模型
++  absolute	绝对定位模型
++  fixed	固定定位模型
++  sticky	磁贴定位模型
+
+###	static
+静态定位/常规定位/自然定位
+
+####	作用
+使元素定位与常规/自然流中(块, 行垂直排列下去, 行内水平从左到右)
+
+####	特点
++	忽略top, bottom, left, right 或者z-index的声明
++ 	两个相邻的元素如果都设置了外边距, 那么最终外边距=两者外边距最大的
++  	具有固定width,height值的元素,如果左右外边距设置为auto, 则左右外边距会自动扩大占满剩余宽度, 造成的效果就是这个块水平居中
+
+###	relative
+相对定位
+
+####	作用
+使元素称为 containing-block => 可定位的祖先元素
+
+####	特点
++	可以使用top / right / bottom / left / z-index进行相对定位
++ 	相对定位的元素不会离开常规流
++  任何元素都可以设置relative, 他的绝对定位的后代都可以相对于他进行绝对定位
++  可以使用浮动元素发生偏移, 并控制他们的堆叠顺序
+
+###	absolute
+绝对定位
+
+#### 作用
+使元素脱离常规流
+
+####	特点
++	脱离常规流
++ 	设置尺寸要注意: 百分比比的是谁,(最近定位祖先元素)
++  lrtb如果为0, 他将对齐到最近定位祖先元素的各边(居中效果)
++  lrtb如果设置为auto, 他将会打回原形
++  如果没有最近定位祖先元素, 默认body定位
++  z-index 可以控制堆叠顺序
+
+###	fixed
+固定定位
+
+####	作用
+固定到某个位置
+
+####	特点
++	固定定位不会随着视口滚动而滚动
++ 	继承absolute特点
+
+###	sticky
+磁贴定位 | 粘性定位 | 吸附定
+
+####	作用
+relative + fixed 完美结合, 制造出吸附效果
+
+####	特点
++	如果产生偏移, 原位置还是会在常规流中, 
++ 	如果他的最近祖先有滚动, 那么他的偏移标尺就是最近祖先元素
++  如果最近祖先元素没有滚动, 那么他的便宜标尺就是视口
 
 
+##	浮动
++	会使元素向左或向右移动, 只能左右, 不能上下
++ 	浮动元素碰到包含框或另一个浮动框, 浮动停止
++  浮动元素之后的元素将围绕他, 之前的不受影响
++  浮动元素会脱离标准流
 
+###	语法
++	float: left 向左浮动
++	float: right 向右浮动
++	float: none 不使用浮动
 
+###	清除浮动
++	clear: none | left(清除左浮动) | right(清除右浮动) | both(清除两边浮动)
 
+####	方法一
+在浮动元素后面使用一个空元素 ```<div class="clear"></div>```
 
+####	方法二
++	在浮动元素的容器添加 ```overflow:hidden```
++	zoom: 1, 触发hasLayout 兼容ie6,7
 
+####	方法三(最常用)
+使用css3的:after伪元素
 
+```css
+.clearfix:after{
+	content:'';
+	display:block;
+	height:0;
+	visibility: hidden;
+	clear:both;
+}
+.clearfix{
+	*zoom:1
+}
+```
 
+##		圣杯布局
+![](./sb1.png)
+![](./sb2.png)
+
+##		双飞翼布局
+![](./sfy1.png)
+![](./sfy2.png)
