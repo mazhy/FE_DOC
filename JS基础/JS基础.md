@@ -510,7 +510,257 @@ function addHandler(element, type, handler){
 + 	功能: 把字符串转换为小写
 
 ### Math
- 
+####	min()
++	语法: Math.min(num1, num2,...numN)
++ 	功能: 	求一组数中的最小值
++  返回值:	Number
+
+####	max()
++	语法: Math. max(num1, num2,...numN)
++ 	功能: 	求一组数中的最大值
++  返回值:	Number
+
+####	ceil()
++	语法: Math.ceil(num1)
++ 	功能: 	向上取整, 即返回大于num的最小整数
++  返回值:	Number
+
+####	floor()
++	语法: Math.floor(num1)
++ 	功能: 	向下取整, 即返回num的整数部分
++  返回值:	Number
+
+####	round()
++	语法: Math.round(num1)
++ 	功能: 	将数值四舍五入为最接近的整数
++  返回值:	Number
+
+####	abc()
++	语法: Math.abs(num1)
++ 	功能: 	返回num的绝对值
++  返回值:	Number
+
+####	random()
++	语法: Math.random()
++ 	功能: 	返回大于等于0小于1的一个随机数
++  说明:	求n到m之间的随机整数的公式
+
+```js
+random  = Math.floor(Math.random() * (m - n + 1) + n)
+```
+
+###	Date对象
+####	创建日期对象
++	语法: new Date()
++ 	功能: 创建一个日期时间对象
++  返回值: 不传参的情况下, 返回当前的日期时间对象
++  说明: 
+	-	如果想根据特定的日期和时间创建日期对象, 必须传入表示该日期的毫秒数或者是一组用逗号隔开的表示年月日时分秒的参数
+
+####	获取年月日时分秒及星期的方法
++	getFullYear() : 返回4位数的年份
++ 	getMonth(): 		返回日期中的月份, 返回值是0-11
++  getDate(): 	返回月份中的天数
++  getDay():	返回星期, 返回值为0-6
++  getHours():	返回小时
++  getMinutes():	返回分
++  getSeconds():	返回秒
++  getTime(): 返回表示日期的毫秒数
+
+####	设置年月日时分秒及星期的方法
++	setFullYear(year)	:	设置4位数的年份
++ 	setMonth(mon):	设置日期中的月份, 从0开始, 0 表示1月
++  setDate(): 设置日期
++  setDay(): 设置星期 ,从0 开始, 0 表示星期日
++  setHours():	设置小时
++  setMinutes():	设置分
++  setSeconds(): 设置秒
++  setTime() : 以毫秒数设置日期, 会改变整个日期
+
+
+##	BOM
+BOM(browser object model ) 浏览器对象模型
+
+###	window
+window是浏览器的一个实例, 在浏览器中, window对象有双重角色, 它既是通过JavaScript访问浏览器窗口的一个接口, 又是ECMAScript规定的Global对象
+
+####	alert
++	语法:	window.alert(”content”) 
++ 	功能:显示带有一段消息和一个确认按钮的警告框 
+
+####	confirm
++	语法:window.confirm(“message") 
++ 	功能:显示一个带有指定消息和OK及取消按钮的对话框 
++  返回值:
+	-	如果用户点击确定按钮，则confirm()返回true
+	-	如果用户点击取消按钮，则confirm()返回fals
+
+####	prompt
++	语法:window.prompt(“text,defaultText") 
++ 	参数说明: 
+	-	text:要在对话框中显示的纯文本(而不是HTML格式的文本) 
+	- 	defaultText:默认的输入文本 
++	返回值:
+	-	如果用户单击提示框的取消按钮，则返回null
+	-	如果用户单击确认按钮，则返回输入字段当前显示的文本
+
+####	open
++	语法:window.open(pageURL,name,parameters) 
++ 	功能:打开一个新的浏览器窗口或查找一个已命名的窗口 
++  参数说明:
+	-	pageURL:子窗口路径
+	-	name:子窗口句柄。
+	-	parameters :窗口参数(各参数用逗号分隔)
+
+####	close
++	语法:window.close( ) 
++ 	功能:关闭浏览器窗口
+
+####	超时调用
++	语法:setTimeout(code,millisec) 
++ 	功能:在指定的毫秒数后调用函数或计算表达式
++	参数说明:
+	-	1、code:要调用的函数或要执行的JavaScript代码串 
+	- 	2、millisec:在执行代码前需等待的毫秒数 
++	说明:
+	-	setTimeout()只执行code一次。如果要多次调用，请使用
+	-	setInterval()或者让code自身再次调用setTimeout()
+
+####	清除超时调用
++	语法:clearTimeout(id_of_settimeout) 
++ 	功能:取消由setTimeout()方法设置的timeout 
++  参数说明:
+	-	1、 id_of_settimeout :由setTimeout()返回的ID值，该值标识要取消的延迟执行代码块
+
+####	间歇调用
++	语法:setInterval(code,millisec) 
++ 	功能:每隔指定的时间执行一次代码
++	参数说明:
+	-	1、code:要调用的函数或要执行的代码串。 
+	- 	2、millisec:周期性执行或调用code之间的时间间隔，以毫秒计
+
+####	清除间歇调用
++	语法:clearInterval(id_of_setInterval) 
++ 	功能:取消由clearInterval()方法设置的timeout 
++  参数说明:
+	-	1、 id_of_setInterval :由clearInterval()返回的ID值，该值标识要取消的延迟执行代码块
+
+###	 location对象
+location对象提供了与当前窗口中加载的文档有关的信息，还提供了一些导航的功能，它既是window对象的属 性，也是document对象的属性
+
+####	 location对象的常用属性
+##### href
++	语法:location.href
++	功能:返回当前加载页面的完整URL
++	说明: location.href与window.location等价 
+
+##### hash
++ 	语法:location.hash
++	功能:返回URL中的hash(#号后 跟零或多个字符)，如果不包含 则返回空字符串。
+
+##### host
++	语法:location.host 
++ 	功能:返回服务器名称和端口号(如果有)
+
+##### hostname
++	语法:location.hostname 
++ 	功能:返回不带端口号的服务器名称。
+
+##### pathname
++	语法:location.pathname 
++ 	功能:返回URL中的目录和(或)文件名。
+
+##### port 
++ 	语法:location.port 
++  	功能:返回URL中指定的端口号，如果没有，返回空字符串。
+
+##### protocol
++ 	语法:location.protocol
++ 	功能:返回页面使用的协议。
+
+##### search
++ 	语法:location.search 
++  	功能:返回URL的查询字符串。这个字符串以问号开头。
+
+#####  replace
++ 	语法:location.replace(url)
++	功能:重新定向URL。
++	说明: 使用location.replace不会在历史记录中生成新纪录。 
+
+#####  reload
++	语法:location.reload()
++	功能:重新加载当前显示的页面。
++	说明:
+	-	location.reload()有可能从缓存中加载
+	-	location.reload(true)从服务器重新加载
+
+###	 history历史对象
+####	back
++	语法:history.back() 
++ 	功能:回到历史记录的上一步 
++  	说明:相当于使用了history.go(-1)
+
+####	forward
++	语法:history.forward() 
++ 	功能:回到历史记录的下一步 
++  	说明:相当于使用了history.go(1)
+
+####	go
++	语法:history.go(-n) 
++ 	功能:回到历史记录的前n步
++	语法:history.go(n) 
++ 	功能:回到历史记录的后n步
+
+###	 Screen对象属性
+####	availWidth 
++	语法:screen.availWidth 
++ 	功能:返回可用的屏幕宽度 
+
+####	availHeight
++ 	语法:screen.availHeight 
++ 	功能:返回可用的屏幕高度
+
+###	 Navigator
+UserAgent:用来识别浏览器名称、版本、引擎 以及操作系 统等信息的内容
+
+##	错误调试与处理
+###	语法错误
++	简单来说, 语法错误就是不符合js语法的错误
++	当出现语法错误的时候, 控制台一般会报相应的错误并告知出错的行号
+	-	符号漏打, 多打, 少打, 错打
+	- 	使用了不合语法的变量名
+	-  语句写错, 没写完等
+
+###	运行时错误
++	运行时错误(Runtime Error), 是指代码没有语法错误, 而在运行的时候才发生的错误, 运行时错误是一个统称
++ 	常见的运行时错误
+	-	ReferenceError, 变量引用异常触发
+	- 	TypeError,	类型使用错误时触发
+	-  RangeError, 不太常见, 一般会在递归爆栈时触发, 即递归深度太深
+
+###	逻辑错误
++	逻辑错误一般就是写的代码有问题
+
+###	try catch finally语句
++	当谢一段代码有潜在的错误时, 如何处理
+	-	使用try catch 语句, 捕捉程序在运行时可能出现的异常
+	- 	他能保证处理运行时错误但不能保证处理语法错误
+
+####	主动触发错误
++	当发生一些不可避免的错误时, 可以使用throw语句来抛出这个错误
+
+####	某些运行时错误不可避免
++	使用try catch
+
+
+
+
+
+
+
+
+
+
 
 
 
