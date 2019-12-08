@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>常考算法题解析</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">常考算法题解析</h1>
+
+<p>这一章节依托于上一章节的内容，毕竟了解了数据结构我们才能写出更好的算法。</p>
+
+<p>对于大部分公司的面试来说，排序的内容已经足以应付了，由此为了更好的符合大众需求，排序的内容是最多的。当然如果你还想冲击更好的公司，那么整一个章节的内容都是需要掌握的。对于字节跳动这类十分看重算法的公司来说，这一章节是远远不够的，<a href="https://link.juejin.im/?target=https%3A%2F%2Fbook.douban.com%2Fsubject%2F6966465%2F">剑指Offer</a>应该是你更好的选择。</p>
+
+<blockquote>
+<p>这一章节的内容信息量会很大，不适合在非电脑环境下阅读，请各位打开代码编辑器，一行行的敲代码，单纯阅读是学习不了算法的。</p>
+</blockquote>
+
+<p>另外学习算法的时候，有一个可视化界面会相对减少点学习的难度，具体可以阅读 <a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Falgorithm-visualizer%2Falgorithm-visualizer">algorithm-visualizer</a> 这个仓库。</p>
+
+<h2 id="toc_1">位运算</h2>
+
+<p>在进入正题之前，我们先来学习一下位运算的内容。因为位运算在算法中很有用，速度可以比四则运算快很多。</p>
+
+<p>在学习位运算之前应该知道十进制如何转二进制，二进制如何转十进制。这里说明下简单的计算方式</p>
+
+<ul>
+<li>  十进制 <code>33</code> 可以看成是 <code>32 + 1</code> ，并且 <code>33</code> 应该是六位二进制的（因为 <code>33</code> 近似 <code>32</code>，而 <code>32</code> 是 2 的五次方，所以是六位），那么 十进制 <code>33</code> 就是 <code>100001</code> ，只要是 2 的次方，那么就是 1否则都为 0</li>
+<li>  那么二进制 <code>100001</code> 同理，首位是 <code>2^5</code> ，末位是 <code>2^0</code> ，相加得出 33</li>
+</ul>
+
+<h3 id="toc_2">左移 &lt;&lt;</h3>
+
+<div><pre><code class="language-none">10 &lt;&lt; 1 // -&gt; 20</code></pre></div>
+
+<p>左移就是将二进制全部往左移动，<code>10</code> 在二进制中表示为 <code>1010</code> ，左移一位后变成 <code>10100</code> ，转换为十进制也就是 20，所以基本可以把左移看成以下公式 <code>a * (2 ^ b)</code></p>
+
+<h3 id="toc_3">算数右移 &gt;&gt;</h3>
+
+<div><pre><code class="language-none">10 &gt;&gt; 1 // -&gt; 5</code></pre></div>
+
+<p>算数右移就是将二进制全部往右移动并去除多余的右边，<code>10</code> 在二进制中表示为 <code>1010</code> ，右移一位后变成 <code>101</code> ，转换为十进制也就是 5，所以基本可以把右移看成以下公式 <code>int v = a / (2 ^ b)</code></p>
+
+<p>右移很好用，比如可以用在二分算法中取中间值</p>
+
+<div><pre><code class="language-none">13 &gt;&gt; 1 // -&gt; 6</code></pre></div>
+
+<h3 id="toc_4">按位操作</h3>
+
+<p><strong>按位与</strong></p>
+
+<p>每一位都为 1，结果才为 1</p>
+
+<div><pre><code class="language-none">8 &amp; 7 // -&gt; 0
+// 1000 &amp; 0111 -&gt; 0000 -&gt; 0</code></pre></div>
+
+<p><strong>按位或</strong></p>
+
+<p>其中一位为 1，结果就是 1</p>
+
+<div><pre><code class="language-none">8 | 7 // -&gt; 15
+// 1000 | 0111 -&gt; 1111 -&gt; 15</code></pre></div>
+
+<p><strong>按位异或</strong></p>
+
+<p>每一位都不同，结果才为 1</p>
+
+<div><pre><code class="language-none">8 ^ 7 // -&gt; 15
+8 ^ 8 // -&gt; 0
+// 1000 ^ 0111 -&gt; 1111 -&gt; 15
+// 1000 ^ 1000 -&gt; 0000 -&gt; 0</code></pre></div>
+
+<p>从以上代码中可以发现按位异或就是不进位加法</p>
+
+<p><strong>面试题</strong>：两个数不使用四则运算得出和</p>
+
+<p>这道题中可以按位异或，因为按位异或就是不进位加法，<code>8 ^ 8 = 0</code> 如果进位了，就是 16 了，所以我们只需要将两个数进行异或操作，然后进位。那么也就是说两个二进制都是 1 的位置，左边应该有一个进位 1，所以可以得出以下公式 <code>a + b = (a ^ b) + ((a &amp; b) &lt;&lt; 1)</code> ，然后通过迭代的方式模拟加法</p>
+
+<div><pre><code class="language-none">function sum(a, b) {
+    if (a == 0) return b
+    if (b == 0) return a
+    let newA = a ^ b
+    let newB = (a &amp; b) &lt;&lt; 1
+    return sum(newA, newB)
+}</code></pre></div>
+
+<h2 id="toc_5">排序</h2>
+
+<p>以下两个函数是排序中会用到的通用函数，就不一一写了</p>
+
+<div><pre><code class="language-none">function checkArray(array) {
+    return Array.isArray(array)
+}
+function swap(array, left, right) {
+    let rightValue = array[right]
+    array[right] = array[left]
+    array[left] = rightValue
+}</code></pre></div>
+
+<h3 id="toc_6">冒泡排序</h3>
+
+<p>冒泡排序的原理如下，从第一个元素开始，把当前元素和下一个索引元素进行比较。如果当前元素大，那么就交换位置，重复操作直到比较到最后一个元素，那么此时最后一个元素就是该数组中最大的数。下一轮重复以上操作，但是此时最后一个元素已经是最大数了，所以不需要再比较最后一个元素，只需要比较到 <code>length - 2</code> 的位置。</p>
+
+<p><img src="./%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93%20-%20yck%20-%20%E6%8E%98%E9%87%91%E5%B0%8F%E5%86%8C_files/162b895b452b306c" alt=""></p>
+
+<p>以下是实现该算法的代码</p>
+
+<div><pre><code class="language-none">function bubble(array) {
+  checkArray(array);
+  for (let i = array.length - 1; i &gt; 0; i--) {
+    // 从 0 到 `length - 1` 遍历
+    for (let j = 0; j &lt; i; j++) {
+      if (array[j] &gt; array[j + 1]) swap(array, j, j + 1)
+    }
+  }
+  return array;
+}</code></pre></div>
+
+<p>该算法的操作次数是一个等差数列 <code>n + (n - 1) + (n - 2) + 1</code> ，去掉常数项以后得出时间复杂度是 O(n * n)</p>
+
+<h3 id="toc_7">插入排序</h3>
+
+<p>插入排序的原理如下。第一个元素默认是已排序元素，取出下一个元素和当前元素比较，如果当前元素大就交换位置。那么此时第一个元素就是当前的最小数，所以下次取出操作从第三个元素开始，向前对比，重复之前的操作。</p>
+
+<p><img src="./%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93%20-%20yck%20-%20%E6%8E%98%E9%87%91%E5%B0%8F%E5%86%8C_files/162b895c7e59dcd1" alt=""></p>
+
+<p>以下是实现该算法的代码</p>
+
+<div><pre><code class="language-none">function insertion(array) {
+  if (!checkArray(array)) return
+  for (let i = 1; i &lt; array.length; i++) {
+    for (let j = i - 1; j &gt;= 0 &amp;&amp; array[j] &gt; array[j + 1]; j--)
+      swap(array, j, j + 1);
+  }
+  return array;
+}</code></pre></div>
+
+<p>该算法的操作次数是一个等差数列 <code>n + (n - 1) + (n - 2) + 1</code> ，去掉常数项以后得出时间复杂度是 O(n * n)</p>
+
+<h3 id="toc_8">选择排序</h3>
+
+<p>选择排序的原理如下。遍历数组，设置最小值的索引为 0，如果取出的值比当前最小值小，就替换最小值索引，遍历完成后，将第一个元素和最小值索引上的值交换。如上操作后，第一个元素就是数组中的最小值，下次遍历就可以从索引 1 开始重复上述操作。</p>
+
+<p><img src="./%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93%20-%20yck%20-%20%E6%8E%98%E9%87%91%E5%B0%8F%E5%86%8C_files/162bc8ea14567e2e" alt=""></p>
+
+<p>以下是实现该算法的代码</p>
+
+<div><pre><code class="language-none">function selection(array) {
+  if (!checkArray(array)) return
+  for (let i = 0; i &lt; array.length - 1; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j &lt; array.length; j++) {
+      minIndex = array[j] &lt; array[minIndex] ? j : minIndex;
+    }
+    swap(array, i, minIndex);
+  }
+  return array;
+}</code></pre></div>
+
+<p>该算法的操作次数是一个等差数列 <code>n + (n - 1) + (n - 2) + 1</code> ，去掉常数项以后得出时间复杂度是 O(n * n)</p>
+
+<h3 id="toc_9">归并排序</h3>
+
+<p>归并排序的原理如下。递归的将数组两两分开直到最多包含两个元素，然后将数组排序合并，最终合并为排序好的数组。假设我有一组数组 <code>[3, 1, 2, 8, 9, 7, 6]</code>，中间数索引是 3，先排序数组 <code>[3, 1, 2, 8]</code> 。在这个左边数组上，继续拆分直到变成数组包含两个元素（如果数组长度是奇数的话，会有一个拆分数组只包含一个元素）。然后排序数组 <code>[3, 1]</code> 和 <code>[2, 8]</code> ，然后再排序数组 <code>[1, 3, 2, 8]</code> ，这样左边数组就排序完成，然后按照以上思路排序右边数组，最后将数组 <code>[1, 2, 3, 8]</code> 和 <code>[6, 7, 9]</code> 排序。</p>
+
+<p><img src="./%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93%20-%20yck%20-%20%E6%8E%98%E9%87%91%E5%B0%8F%E5%86%8C_files/162be13c7e30bd86" alt=""></p>
+
+<p>以下是实现该算法的代码</p>
+
+<div><pre><code class="language-none">function sort(array) {
+  if (!checkArray(array)) return
+  mergeSort(array, 0, array.length - 1);
+  return array;
+}
+
+function mergeSort(array, left, right) {
+  // 左右索引相同说明已经只有一个数
+  if (left === right) return;
+  // 等同于 `left + (right - left) / 2`
+  // 相比 `(left + right) / 2` 来说更加安全，不会溢出
+  // 使用位运算是因为位运算比四则运算快
+  let mid = parseInt(left + ((right - left) &gt;&gt; 1));
+  mergeSort(array, left, mid);
+  mergeSort(array, mid + 1, right);
+
+  let help = [];
+  let i = 0;
+  let p1 = left;
+  let p2 = mid + 1;
+  while (p1 &lt;= mid &amp;&amp; p2 &lt;= right) {
+    help[i++] = array[p1] &lt; array[p2] ? array[p1++] : array[p2++];
+  }
+  while (p1 &lt;= mid) {
+    help[i++] = array[p1++];
+  }
+  while (p2 &lt;= right) {
+    help[i++] = array[p2++];
+  }
+  for (let i = 0; i &lt; help.length; i++) {
+    array[left + i] = help[i];
+  }
+  return array;
+}</code></pre></div>
+
+<p>以上算法使用了递归的思想。递归的本质就是压栈，每递归执行一次函数，就将该函数的信息（比如参数，内部的变量，执行到的行数）压栈，直到遇到终止条件，然后出栈并继续执行函数。对于以上递归函数的调用轨迹如下</p>
+
+<div><pre><code class="language-none">mergeSort(data, 0, 6) // mid = 3
+  mergeSort(data, 0, 3) // mid = 1
+    mergeSort(data, 0, 1) // mid = 0
+      mergeSort(data, 0, 0) // 遇到终止，回退到上一步
+    mergeSort(data, 1, 1) // 遇到终止，回退到上一步
+    // 排序 p1 = 0, p2 = mid + 1 = 1
+    // 回退到 `mergeSort(data, 0, 3)` 执行下一个递归
+  mergeSort(2, 3) // mid = 2
+    mergeSort(3, 3) // 遇到终止，回退到上一步
+  // 排序 p1 = 2, p2 = mid + 1 = 3
+  // 回退到 `mergeSort(data, 0, 3)` 执行合并逻辑
+  // 排序 p1 = 0, p2 = mid + 1 = 2
+  // 执行完毕回退
+  // 左边数组排序完毕，右边也是如上轨迹</code></pre></div>
+
+<p>该算法的操作次数是可以这样计算：递归了两次，每次数据量是数组的一半，并且最后把整个数组迭代了一次，所以得出表达式 <code>2T(N / 2) + T(N)</code> （T 代表时间，N 代表数据量）。根据该表达式可以套用 <a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.wikiwand.com%2Fzh-hans%2F%25E4%25B8%25BB%25E5%25AE%259A%25E7%2590%2586">该公式</a> 得出时间复杂度为 <code>O(N * logN)</code></p>
+
+<h3 id="toc_10">快排</h3>
+
+<p>快排的原理如下。随机选取一个数组中的值作为基准值，从左至右取值与基准值对比大小。比基准值小的放数组左边，大的放右边，对比完成后将基准值和第一个比基准值大的值交换位置。然后将数组以基准值的位置分为两部分，继续递归以上操作。</p>
+
+<p><img src="./%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93%20-%20yck%20-%20%E6%8E%98%E9%87%91%E5%B0%8F%E5%86%8C_files/162cd23e69ca9ea3" alt=""></p>
+
+<p>以下是实现该算法的代码</p>
+
+<div><pre><code class="language-none">function sort(array) {
+  if (!checkArray(array)) return
+  quickSort(array, 0, array.length - 1);
+  return array;
+}
+
+function quickSort(array, left, right) {
+  if (left &lt; right) {
+    swap(array, , right)
+    // 随机取值，然后和末尾交换，这样做比固定取一个位置的复杂度略低
+    let indexs = part(array, parseInt(Math.random() * (right - left + 1)) + left, right);
+    quickSort(array, left, indexs[0]);
+    quickSort(array, indexs[1] + 1, right);
+  }
+}
+function part(array, left, right) {
+  let less = left - 1;
+  let more = right;
+  while (left &lt; more) {
+    if (array[left] &lt; array[right]) {
+      // 当前值比基准值小，`less` 和 `left` 都加一
+       ++less;
+       ++left;
+    } else if (array[left] &gt; array[right]) {
+      // 当前值比基准值大，将当前值和右边的值交换
+      // 并且不改变 `left`，因为当前换过来的值还没有判断过大小
+      swap(array, --more, left);
+    } else {
+      // 和基准值相同，只移动下标
+      left++;
+    }
+  }
+  // 将基准值和比基准值大的第一个值交换位置
+  // 这样数组就变成 `[比基准值小, 基准值, 比基准值大]`
+  swap(array, right, more);
+  return [less, more];
+}</code></pre></div>
+
+<p>该算法的复杂度和归并排序是相同的，但是额外空间复杂度比归并排序少，只需 O(logN)，并且相比归并排序来说，所需的常数时间也更少。</p>
+
+<h4 id="toc_11">面试题</h4>
+
+<p><strong>Sort Colors</strong>：该题目来自 <a href="https://link.juejin.im/?target=https%3A%2F%2Fleetcode.com%2Fproblems%2Fsort-colors%2Fdescription%2F">LeetCode</a>，题目需要我们将 <code>[2,0,2,1,1,0]</code> 排序成 <code>[0,0,1,1,2,2]</code> ，这个问题就可以使用三路快排的思想。</p>
+
+<p>以下是代码实现</p>
+
+<div><pre><code class="language-none">var sortColors = function(nums) {
+  let left = -1;
+  let right = nums.length;
+  let i = 0;
+  // 下标如果遇到 right，说明已经排序完成
+  while (i &lt; right) {
+    if (nums[i] == 0) {
+      swap(nums, i++, ++left);
+    } else if (nums[i] == 1) {
+      i++;
+    } else {
+      swap(nums, i, --right);
+    }
+  }
+};</code></pre></div>
+
+<p><strong>Kth Largest Element in an Array</strong>：该题目来自 <a href="https://link.juejin.im/?target=https%3A%2F%2Fleetcode.com%2Fproblems%2Fkth-largest-element-in-an-array%2Fdescription%2F">LeetCode</a>，题目需要找出数组中第 K 大的元素，这问题也可以使用快排的思路。并且因为是找出第 K 大元素，所以在分离数组的过程中，可以找出需要的元素在哪边，然后只需要排序相应的一边数组就好。</p>
+
+<p>以下是代码实现</p>
+
+<div><pre><code class="language-none">var findKthLargest = function(nums, k) {
+  let l = 0
+  let r = nums.length - 1
+  // 得出第 K 大元素的索引位置
+  k = nums.length - k
+  while (l &lt; r) {
+    // 分离数组后获得比基准树大的第一个元素索引
+    let index = part(nums, l, r)
+    // 判断该索引和 k 的大小
+    if (index &lt; k) {
+      l = index + 1
+    } else if (index &gt; k) {
+      r = index - 1
+    } else {
+      break
+    }
+  }
+  return nums[k]
+};
+function part(array, left, right) {
+  let less = left - 1;
+  let more = right;
+  while (left &lt; more) {
+    if (array[left] &lt; array[right]) {
+       ++less;
+       ++left;
+    } else if (array[left] &gt; array[right]) {
+      swap(array, --more, left);
+    } else {
+      left++;
+    }
+  }
+  swap(array, right, more);
+  return more;
+}</code></pre></div>
+
+<h3 id="toc_12">堆排序</h3>
+
+<p>堆排序利用了二叉堆的特性来做，二叉堆通常用数组表示，并且二叉堆是一颗完全二叉树（所有叶节点（最底层的节点）都是从左往右顺序排序，并且其他层的节点都是满的）。二叉堆又分为大根堆与小根堆。</p>
+
+<ul>
+<li>  大根堆是某个节点的所有子节点的值都比他小</li>
+<li>  小根堆是某个节点的所有子节点的值都比他大</li>
+</ul>
+
+<p>堆排序的原理就是组成一个大根堆或者小根堆。以小根堆为例，某个节点的左边子节点索引是 <code>i * 2 + 1</code>，右边是 <code>i * 2 + 2</code>，父节点是 <code>(i - 1) /2</code>。</p>
+
+<ol>
+<li> 首先遍历数组，判断该节点的父节点是否比他小，如果小就交换位置并继续判断，直到他的父节点比他大</li>
+<li> 重新以上操作 1，直到数组首位是最大值</li>
+<li> 然后将首位和末尾交换位置并将数组长度减一，表示数组末尾已是最大值，不需要再比较大小</li>
+<li> 对比左右节点哪个大，然后记住大的节点的索引并且和父节点对比大小，如果子节点大就交换位置</li>
+<li> 重复以上操作 3 - 4 直到整个数组都是大根堆。</li>
+</ol>
+
+<p><img src="./%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93%20-%20yck%20-%20%E6%8E%98%E9%87%91%E5%B0%8F%E5%86%8C_files/162d2a9ff258dfe1" alt=""></p>
+
+<p>以下是实现该算法的代码</p>
+
+<div><pre><code class="language-none">function heap(array) {
+  if (!checkArray(array)) return
+  // 将最大值交换到首位
+  for (let i = 0; i &lt; array.length; i++) {
+    heapInsert(array, i);
+  }
+  let size = array.length;
+  // 交换首位和末尾
+  swap(array, 0, --size);
+  while (size &gt; 0) {
+    heapify(array, 0, size);
+    swap(array, 0, --size);
+  }
+  return array;
+}
+
+function heapInsert(array, index) {
+  // 如果当前节点比父节点大，就交换
+  while (array[index] &gt; array[parseInt((index - 1) / 2)]) {
+    swap(array, index, parseInt((index - 1) / 2));
+    // 将索引变成父节点
+    index = parseInt((index - 1) / 2);
+  }
+}
+function heapify(array, index, size) {
+  let left = index * 2 + 1;
+  while (left &lt; size) {
+    // 判断左右节点大小
+    let largest =
+      left + 1 &lt; size &amp;&amp; array[left] &lt; array[left + 1] ? left + 1 : left;
+    // 判断子节点和父节点大小
+    largest = array[index] &lt; array[largest] ? largest : index;
+    if (largest === index) break;
+    swap(array, index, largest);
+    index = largest;
+    left = index * 2 + 1;
+  }
+}</code></pre></div>
+
+<p>以上代码实现了小根堆，如果需要实现大根堆，只需要把节点对比反一下就好。</p>
+
+<p>该算法的复杂度是 O(logN)</p>
+
+<h3 id="toc_13">系统自带排序实现</h3>
+
+<p>每个语言的排序内部实现都是不同的。</p>
+
+<p>对于 JS 来说，数组长度大于 10 会采用快排，否则使用插入排序 <a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fv8%2Fv8%2Fblob%2Fad82a40509c5b5b4680d4299c8f08d6c6d31af3c%2Fsrc%2Fjs%2Farray.js%23L760%3A7">源码实现</a> 。选择插入排序是因为虽然时间复杂度很差，但是在数据量很小的情况下和 <code>O(N * logN)</code>相差无几，然而插入排序需要的常数时间很小，所以相对别的排序来说更快。</p>
+
+<p>对于 Java 来说，还会考虑内部的元素的类型。对于存储对象的数组来说，会采用稳定性好的算法。稳定性的意思就是对于相同值来说，相对顺序不能改变。</p>
+
+<p><img src="./%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93%20-%20yck%20-%20%E6%8E%98%E9%87%91%E5%B0%8F%E5%86%8C_files/162d7df247dcda00" alt=""></p>
+
+<h2 id="toc_14">链表</h2>
+
+<h3 id="toc_15">反转单向链表</h3>
+
+<p>该题目来自 <a href="https://link.juejin.im/?target=https%3A%2F%2Fleetcode.com%2Fproblems%2Freverse-linked-list%2Fdescription%2F">LeetCode</a>，题目需要将一个单向链表反转。思路很简单，使用三个变量分别表示当前节点和当前节点的前后节点，虽然这题很简单，但是却是一道面试常考题</p>
+
+<p>以下是实现该算法的代码</p>
+
+<div><pre><code class="language-none">var reverseList = function(head) {
+    // 判断下变量边界问题
+    if (!head || !head.next) return head
+    // 初始设置为空，因为第一个节点反转后就是尾部，尾部节点指向 null
+    let pre = null
+    let current = head
+    let next
+    // 判断当前节点是否为空
+    // 不为空就先获取当前节点的下一节点
+    // 然后把当前节点的 next 设为上一个节点
+    // 然后把 current 设为下一个节点，pre 设为当前节点
+    while(current) {
+        next = current.next
+        current.next = pre
+        pre = current
+        current = next
+    }
+    return pre
+};</code></pre></div>
+
+<h2 id="toc_16">树</h2>
+
+<h3 id="toc_17">二叉树的先序，中序，后序遍历</h3>
+
+<p>先序遍历表示先访问根节点，然后访问左节点，最后访问右节点。</p>
+
+<p>中序遍历表示先访问左节点，然后访问根节点，最后访问右节点。</p>
+
+<p>后序遍历表示先访问左节点，然后访问右节点，最后访问根节点。</p>
+
+<h4 id="toc_18">递归实现</h4>
+
+<p>递归实现相当简单，代码如下</p>
+
+<div><pre><code class="language-none">function TreeNode(val) {
+  this.val = val;
+  this.left = this.right = null;
+}
+var traversal = function(root) {
+  if (root) {
+    // 先序
+    console.log(root); 
+    traversal(root.left);
+    // 中序
+    // console.log(root); 
+    traversal(root.right);
+    // 后序
+    // console.log(root);
+  }
+};</code></pre></div>
+
+<p>对于递归的实现来说，只需要理解每个节点都会被访问三次就明白为什么这样实现了。</p>
+
+<h4 id="toc_19">非递归实现</h4>
+
+<p>非递归实现使用了栈的结构，通过栈的先进后出模拟递归实现。</p>
+
+<p>以下是先序遍历代码实现</p>
+
+<div><pre><code class="language-none">function pre(root) {
+  if (root) {
+    let stack = [];
+    // 先将根节点 push
+    stack.push(root);
+    // 判断栈中是否为空
+    while (stack.length &gt; 0) {
+      // 弹出栈顶元素
+      root = stack.pop();
+      console.log(root);
+      // 因为先序遍历是先左后右，栈是先进后出结构
+      // 所以先 push 右边再 push 左边
+      if (root.right) {
+        stack.push(root.right);
+      }
+      if (root.left) {
+        stack.push(root.left);
+      }
+    }
+  }
+}</code></pre></div>
+
+<p>以下是中序遍历代码实现</p>
+
+<div><pre><code class="language-none">function mid(root) {
+  if (root) {
+    let stack = [];
+    // 中序遍历是先左再根最后右
+    // 所以首先应该先把最左边节点遍历到底依次 push 进栈
+    // 当左边没有节点时，就打印栈顶元素，然后寻找右节点
+    // 对于最左边的叶节点来说，可以把它看成是两个 null 节点的父节点
+    // 左边打印不出东西就把父节点拿出来打印，然后再看右节点
+    while (stack.length &gt; 0 || root) {
+      if (root) {
+        stack.push(root);
+        root = root.left;
+      } else {
+        root = stack.pop();
+        console.log(root);
+        root = root.right;
+      }
+    }
+  }
+}</code></pre></div>
+
+<p>以下是后序遍历代码实现，该代码使用了两个栈来实现遍历，相比一个栈的遍历来说要容易理解很多</p>
+
+<div><pre><code class="language-none">function pos(root) {
+  if (root) {
+    let stack1 = [];
+    let stack2 = [];
+    // 后序遍历是先左再右最后根
+    // 所以对于一个栈来说，应该先 push 根节点
+    // 然后 push 右节点，最后 push 左节点
+    stack1.push(root);
+    while (stack1.length &gt; 0) {
+      root = stack1.pop();
+      stack2.push(root);
+      if (root.left) {
+        stack1.push(root.left);
+      }
+      if (root.right) {
+        stack1.push(root.right);
+      }
+    }
+    while (stack2.length &gt; 0) {
+      console.log(s2.pop());
+    }
+  }
+}</code></pre></div>
+
+<h3 id="toc_20">中序遍历的前驱后继节点</h3>
+
+<p>实现这个算法的前提是节点有一个 <code>parent</code> 的指针指向父节点，根节点指向 <code>null</code> 。</p>
+
+<p><img src="./%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93%20-%20yck%20-%20%E6%8E%98%E9%87%91%E5%B0%8F%E5%86%8C_files/162f61ad8e8588b7" alt=""></p>
+
+<p>如图所示，该树的中序遍历结果是 <code>4, 2, 5, 1, 6, 3, 7</code></p>
+
+<h4 id="toc_21">前驱节点</h4>
+
+<p>对于节点 <code>2</code> 来说，他的前驱节点就是 <code>4</code> ，按照中序遍历原则，可以得出以下结论</p>
+
+<ol>
+<li> 如果选取的节点的左节点不为空，就找该左节点最右的节点。对于节点 <code>1</code> 来说，他有左节点 <code>2</code> ，那么节点 <code>2</code> 的最右节点就是 <code>5</code></li>
+<li> 如果左节点为空，且目标节点是父节点的右节点，那么前驱节点为父节点。对于节点 <code>5</code> 来说，没有左节点，且是节点 <code>2</code> 的右节点，所以节点 <code>2</code> 是前驱节点</li>
+<li> 如果左节点为空，且目标节点是父节点的左节点，向上寻找到第一个是父节点的右节点的节点。对于节点 <code>6</code> 来说，没有左节点，且是节点 <code>3</code> 的左节点，所以向上寻找到节点 <code>1</code> ，发现节点 <code>3</code> 是节点 <code>1</code> 的右节点，所以节点 <code>1</code> 是节点 <code>6</code> 的前驱节点</li>
+</ol>
+
+<p>以下是算法实现</p>
+
+<div><pre><code class="language-none">function predecessor(node) {
+  if (!node) return 
+  // 结论 1
+  if (node.left) {
+    return getRight(node.left)
+  } else {
+    let parent = node.parent
+    // 结论 2 3 的判断
+    while(parent &amp;&amp; parent.right === node) {
+      node = parent
+      parent = node.parent
+    }
+    return parent
+  }
+}
+function getRight(node) {
+  if (!node) return 
+  node = node.right
+  while(node) node = node.right
+  return node
+}</code></pre></div>
+
+<h4 id="toc_22">后继节点</h4>
+
+<p>对于节点 <code>2</code> 来说，他的后继节点就是 <code>5</code> ，按照中序遍历原则，可以得出以下结论</p>
+
+<ol>
+<li> 如果有右节点，就找到该右节点的最左节点。对于节点 <code>1</code> 来说，他有右节点 <code>3</code> ，那么节点 <code>3</code> 的最左节点就是 <code>6</code></li>
+<li> 如果没有右节点，就向上遍历直到找到一个节点是父节点的左节点。对于节点 <code>5</code> 来说，没有右节点，就向上寻找到节点 <code>2</code> ，该节点是父节点 <code>1</code> 的左节点，所以节点 <code>1</code> 是后继节点</li>
+</ol>
+
+<p>以下是算法实现</p>
+
+<div><pre><code class="language-none">function successor(node) {
+  if (!node) return 
+  // 结论 1
+  if (node.right) {
+    return getLeft(node.right)
+  } else {
+    // 结论 2
+    let parent = node.parent
+    // 判断 parent 为空
+    while(parent &amp;&amp; parent.left === node) {
+      node = parent
+      parent = node.parent
+    }
+    return parent
+  }
+}
+function getLeft(node) {
+  if (!node) return 
+  node = node.left
+  while(node) node = node.left
+  return node
+}</code></pre></div>
+
+<h3 id="toc_23">树的深度</h3>
+
+<p><strong>树的最大深度</strong>：该题目来自 <a href="https://link.juejin.im/?target=https%3A%2F%2Fleetcode.com%2Fproblems%2Fmaximum-depth-of-binary-tree%2Fdescription%2F">Leetcode</a>，题目需要求出一颗二叉树的最大深度</p>
+
+<p>以下是算法实现</p>
+
+<div><pre><code class="language-none">var maxDepth = function(root) {
+    if (!root) return 0 
+    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1
+};</code></pre></div>
+
+<p>对于该递归函数可以这样理解：一旦没有找到节点就会返回 0，每弹出一次递归函数就会加一，树有三层就会得到3。</p>
+
+<h2 id="toc_24">动态规划</h2>
+
+<p>动态规划背后的基本思想非常简单。就是将一个问题拆分为子问题，一般来说这些子问题都是非常相似的，那么我们可以通过只解决一次每个子问题来达到减少计算量的目的。</p>
+
+<p>一旦得出每个子问题的解，就存储该结果以便下次使用。</p>
+
+<h3 id="toc_25">斐波那契数列</h3>
+
+<p>斐波那契数列就是从 0 和 1 开始，后面的数都是前两个数之和</p>
+
+<p>0，1，1，2，3，5，8，13，21，34，55，89....</p>
+
+<p>那么显然易见，我们可以通过递归的方式来完成求解斐波那契数列</p>
+
+<div><pre><code class="language-none">function fib(n) {
+  if (n &lt; 2 &amp;&amp; n &gt;= 0) return n
+  return fib(n - 1) + fib(n - 2)
+}
+fib(10)</code></pre></div>
+
+<p>以上代码已经可以完美的解决问题。但是以上解法却存在很严重的性能问题，当 n 越大的时候，需要的时间是指数增长的，这时候就可以通过动态规划来解决这个问题。</p>
+
+<p>动态规划的本质其实就是两点</p>
+
+<ol>
+<li> 自底向上分解子问题</li>
+<li> 通过变量存储已经计算过的解</li>
+</ol>
+
+<p>根据上面两点，我们的斐波那契数列的动态规划思路也就出来了</p>
+
+<ol>
+<li> 斐波那契数列从 0 和 1 开始，那么这就是这个子问题的最底层</li>
+<li><p>通过数组来存储每一位所对应的斐波那契数列的值</p>
+
+<p>function fib(n) {
+  let array = new Array(n + 1).fill(null)
+  array[0] = 0
+  array[1] = 1
+  for (let i = 2; i &lt;= n; i++) {
+    array[i] = array[i - 1] + array[i - 2]
+  }
+  return array[n]
+}
+fib(10)</p></li>
+</ol>
+
+<h3 id="toc_26">0 - 1背包问题</h3>
+
+<p>该问题可以描述为：给定一组物品，每种物品都有自己的重量和价格，在限定的总重量内，我们如何选择，才能使得物品的总价格最高。每个问题只能放入至多一次。</p>
+
+<p>假设我们有以下物品</p>
+
+<p>物品 ID / 重量</p>
+
+<p>价值</p>
+
+<p>1</p>
+
+<p>3</p>
+
+<p>2</p>
+
+<p>7</p>
+
+<p>3</p>
+
+<p>12</p>
+
+<p>对于一个总容量为 5 的背包来说，我们可以放入重量 2 和 3 的物品来达到背包内的物品总价值最高。</p>
+
+<p>对于这个问题来说，子问题就两个，分别是放物品和不放物品，可以通过以下表格来理解子问题</p>
+
+<p>物品 ID / 剩余容量</p>
+
+<p>0</p>
+
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>1</p>
+
+<p>0</p>
+
+<p>3</p>
+
+<p>3</p>
+
+<p>3</p>
+
+<p>3</p>
+
+<p>3</p>
+
+<p>2</p>
+
+<p>0</p>
+
+<p>3</p>
+
+<p>7</p>
+
+<p>10</p>
+
+<p>10</p>
+
+<p>10</p>
+
+<p>3</p>
+
+<p>0</p>
+
+<p>3</p>
+
+<p>7</p>
+
+<p>12</p>
+
+<p>15</p>
+
+<p>19</p>
+
+<p>直接来分析能放三种物品的情况，也就是最后一行</p>
+
+<ul>
+<li>  当容量少于 3 时，只取上一行对应的数据，因为当前容量不能容纳物品 3</li>
+<li>  当容量 为 3 时，考虑两种情况，分别为放入物品 3 和不放物品 3
+
+<ul>
+<li>  不放物品 3 的情况下，总价值为 10</li>
+<li>  放入物品 3 的情况下，总价值为 12，所以应该放入物品 3</li>
+</ul></li>
+<li>  当容量 为 4 时，考虑两种情况，分别为放入物品 3 和不放物品 3
+
+<ul>
+<li>  不放物品 3 的情况下，总价值为 10</li>
+<li>  放入物品 3 的情况下，和放入物品 1 的价值相加，得出总价值为 15，所以应该放入物品 3</li>
+</ul></li>
+<li>  当容量 为 5 时，考虑两种情况，分别为放入物品 3 和不放物品 3
+
+<ul>
+<li>  不放物品 3 的情况下，总价值为 10</li>
+<li>  放入物品 3 的情况下，和放入物品 2 的价值相加，得出总价值为 19，所以应该放入物品 3</li>
+</ul></li>
+</ul>
+
+<p>以下代码对照上表更容易理解</p>
+
+<div><pre><code class="language-none">/**
+ * @param {*} w 物品重量
+ * @param {*} v 物品价值
+ * @param {*} C 总容量
+ * @returns
+ */
+function knapsack(w, v, C) {
+  let length = w.length
+  if (length === 0) return 0
+
+  // 对照表格，生成的二维数组，第一维代表物品，第二维代表背包剩余容量
+  // 第二维中的元素代表背包物品总价值
+  let array = new Array(length).fill(new Array(C + 1).fill(null))
+
+  // 完成底部子问题的解
+  for (let i = 0; i &lt;= C; i++) {
+    // 对照表格第一行， array[0] 代表物品 1
+    // i 代表剩余总容量
+    // 当剩余总容量大于物品 1 的重量时，记录下背包物品总价值，否则价值为 0
+    array[0][i] = i &gt;= w[0] ? v[0] : 0
+  }
+
+  // 自底向上开始解决子问题，从物品 2 开始
+  for (let i = 1; i &lt; length; i++) {
+    for (let j = 0; j &lt;= C; j++) {
+      // 这里求解子问题，分别为不放当前物品和放当前物品
+      // 先求不放当前物品的背包总价值，这里的值也就是对应表格中上一行对应的值
+      array[i][j] = array[i - 1][j]
+      // 判断当前剩余容量是否可以放入当前物品
+      if (j &gt;= w[i]) {
+        // 可以放入的话，就比大小
+        // 放入当前物品和不放入当前物品，哪个背包总价值大
+        array[i][j] = Math.max(array[i][j], v[i] + array[i - 1][j - w[i]])
+      }
+    }
+  }
+  return array[length - 1][C]
+}</code></pre></div>
+
+<h3 id="toc_27">最长递增子序列</h3>
+
+<p>最长递增子序列意思是在一组数字中，找出最长一串递增的数字，比如</p>
+
+<p>0, 3, 4, 17, 2, 8, 6, 10</p>
+
+<p>对于以上这串数字来说，最长递增子序列就是 0, 3, 4, 8, 10，可以通过以下表格更清晰的理解</p>
+
+<p>数字</p>
+
+<p>0 3 4 17 2 8 6 10</p>
+
+<p>长度</p>
+
+<p>1 2 3 4 2 4 4 5</p>
+
+<p>通过以上表格可以很清晰的发现一个规律，找出刚好比当前数字小的数，并且在小的数组成的长度基础上加一。</p>
+
+<p>这个问题的动态思路解法很简单，直接上代码</p>
+
+<div><pre><code class="language-none">function lis(n) {
+  if (n.length === 0) return 0
+  // 创建一个和参数相同大小的数组，并填充值为 1
+  let array = new Array(n.length).fill(1)
+  // 从索引 1 开始遍历，因为数组已经所有都填充为 1 了
+  for (let i = 1; i &lt; n.length; i++) {
+    // 从索引 0 遍历到 i
+    // 判断索引 i 上的值是否大于之前的值
+    for (let j = 0; j &lt; i; j++) {
+      if (n[i] &gt; n[j]) {
+        array[i] = Math.max(array[i], 1 + array[j])
+      }
+    }
+  }
+  let res = 1
+  for (let i = 0; i &lt; array.length; i++) {
+    res = Math.max(res, array[i])
+  }
+  return res
+}</code></pre></div>
+
+
+
+
+</body>
+
+</html>

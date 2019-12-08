@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>浏览器渲染原理</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">浏览器渲染原理</h1>
+
+<blockquote>
+<p>注意：该章节都是一个面试题。</p>
+</blockquote>
+
+<p>在这一章节中，我们将来学习浏览器渲染原理这部分的知识。你可能会有疑问，我又不是做浏览器研发的，为什么要来学习这个？其实我们学习浏览器渲染原理更多的是为了解决性能的问题，如果你不了解这部分的知识，你就不知道什么情况下会对性能造成损伤。<strong>并且渲染原理在面试中答得好，也是一个能与其他候选人拉开差距的一点。</strong></p>
+
+<p>我们知道执行 JS 有一个 JS 引擎，那么执行渲染也有一个渲染引擎。同样，渲染引擎在不同的浏览器中也不是都相同的。比如在 Firefox 中叫做 <strong>Gecko</strong>，在 Chrome 和 Safari 中都是基于 <strong>WebKit</strong> 开发的。在这一章节中，我们也会主要学习关于 <strong>WebKit</strong> 的这部分渲染引擎内容。</p>
+
+<h2 id="toc_1">浏览器接收到 HTML 文件并转换为 DOM 树</h2>
+
+<p>当我们打开一个网页时，浏览器都会去请求对应的 HTML 文件。虽然平时我们写代码时都会分为 JS、CSS、HTML 文件，也就是字符串，但是计算机硬件是不理解这些字符串的，所以在网络中传输的内容其实都是 <code>0</code> 和 <code>1</code> 这些<strong>字节数据</strong>。当浏览器接收到这些字节数据以后，它会将这些<strong>字节数据转换为字符串</strong>，也就是我们写的代码。</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/27/16754281e59587f3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+
+<p>当数据转换为字符串以后，浏览器会先将这些字符串通过词法分析转换为<strong>标记</strong>（token），这一过程在词法分析中叫做<strong>标记化</strong>（tokenization）。</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/27/16754288f37a5347?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+
+<p>那么什么是标记呢？这其实属于编译原理这一块的内容了。简单来说，标记还是字符串，是构成代码的<strong>最小单位</strong>。这一过程会将代码分拆成一块块，并给这些内容打上标记，便于理解这些最小单位的代码是什么意思。</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/27/167540a7b5cef612?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+
+<p>当结束标记化后，这些标记会紧接着转换为 Node，最后这些 Node 会根据不同 Node 之前的联系构建为一颗 DOM 树。</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/27/1675416cbea98c3c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+
+<p>以上就是浏览器从网络中接收到 HTML 文件然后一系列的转换过程。</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/27/167542b09875a74a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+
+<p>当然，在解析 HTML 文件的时候，浏览器还会遇到 CSS 和 JS 文件，这时候浏览器也会去下载并解析这些文件，接下来就让我们先来学习浏览器如何解析 CSS 文件。</p>
+
+<h2 id="toc_2">将 CSS 文件转换为 CSSOM 树</h2>
+
+<p>其实转换 CSS 到 CSSOM 树的过程和上一小节的过程是极其类似的</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/27/167542a9af5f193f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+
+<p>在这一过程中，浏览器会确定下每一个节点的<strong>样式</strong>到底是什么，并且这一过程其实是<strong>很消耗资源</strong>的。因为样式你可以自行设置给某个节点，也可以通过继承获得。在这一过程中，浏览器得<strong>递归</strong> CSSOM 树，然后确定具体的元素到底是什么样式。</p>
+
+<p>如果你有点不理解为什么会消耗资源的话，我这里举个例子
+<code>js
+    &lt;div&gt;
+      &lt;a&gt; &lt;span&gt;&lt;/span&gt; &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;style&gt;
+      span {
+        color: red;
+      }
+      div &gt; a &gt; span {
+        color: red;
+      }
+    &lt;/style&gt;
+</code></p>
+
+<p>对于第一种设置样式的方式来说，浏览器只需要找到页面中所有的 <code>span</code> 标签然后设置颜色，但是对于第二种设置样式的方式来说，浏览器首先需要找到所有的 <code>span</code> 标签，然后找到 <code>span</code> 标签上的 <code>a</code> 标签，最后再去找到 <code>div</code> 标签，然后给符合这种条件的 <code>span</code> 标签设置颜色，这样的递归过程就很复杂。所以我们应该尽可能的避免写<strong>过于具体</strong>的 CSS 选择器，然后对于 HTML 来说也尽量少的添加无意义标签，保证<strong>层级扁平</strong>。</p>
+
+<h2 id="toc_3">生成渲染树</h2>
+
+<p>当我们生成 DOM 树和 CSSOM 树以后，就需要将这两棵树组合为渲染树。</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/27/16754488529c48bd?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+
+<p>在这一过程中，不是简单的将两者合并就行了。渲染树只会包括<strong>需要显示的节点</strong>和这些节点的样式信息，如果某个节点是 <code>display: none</code> 的，那么就不会在渲染树中显示。</p>
+
+<p>当浏览器生成渲染树以后，就会根据渲染树来进行布局（也可以叫做回流），然后调用 GPU 绘制，合成图层，显示在屏幕上。对于这一部分的内容因为过于底层，还涉及到了硬件相关的知识，这里就不再继续展开内容了。</p>
+
+<p>那么通过以上内容，我们已经详细了解到了浏览器从接收文件到将内容渲染在屏幕上的这一过程。接下来，我们将会来学习上半部分遗留下来的一些知识点。</p>
+
+<h2 id="toc_4">为什么操作 DOM 慢</h2>
+
+<p>想必大家都听过操作 DOM 性能很差，但是这其中的原因是什么呢？</p>
+
+<p>因为 DOM 是属于渲染引擎中的东西，而 JS 又是 JS 引擎中的东西。当我们通过 JS 操作 DOM 的时候，其实这个操作涉及到了两个线程之间的通信，那么势必会带来一些性能上的损耗。操作 DOM 次数一多，也就等同于一直在进行线程之间的通信，并且操作 DOM 可能还会带来重绘回流的情况，所以也就导致了性能上的问题。</p>
+
+<blockquote>
+<p>经典面试题：插入几万个 DOM，如何实现页面不卡顿？</p>
+</blockquote>
+
+<p>对于这道题目来说，首先我们肯定不能一次性把几万个 DOM 全部插入，这样肯定会造成卡顿，所以解决问题的重点应该是如何分批次部分渲染 DOM。大部分人应该可以想到通过 <code>requestAnimationFrame</code> 的方式去循环的插入 DOM，其实还有种方式去解决这个问题：<strong>虚拟滚动</strong>（virtualized scroller）。</p>
+
+<p><strong>这种技术的原理就是只渲染可视区域内的内容，非可见区域的那就完全不渲染了，当用户在滚动的时候就实时去替换渲染的内容。</strong></p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/15/167b1c6887ecbba7?imageslim" alt=""></p>
+
+<p>从上图中我们可以发现，即使列表很长，但是渲染的 DOM 元素永远只有那么几个，当我们滚动页面的时候就会实时去更新 DOM，这个技术就能顺利解决这道经典面试题。如果你想了解更多的内容可以了解下这个 <a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fbvaughn%2Freact-virtualized">react-virtualized</a>。</p>
+
+<h2 id="toc_5">什么情况阻塞渲染</h2>
+
+<p>首先渲染的前提是生成渲染树，所以 HTML 和 CSS 肯定会阻塞渲染。如果你想渲染的越快，你越应该降低一开始需要渲染的文件<strong>大小</strong>，并且<strong>扁平层级，优化选择器</strong>。</p>
+
+<p>然后当浏览器在解析到 <code>script</code> 标签时，会暂停构建 DOM，完成后才会从暂停的地方重新开始。也就是说，如果你想首屏渲染的越快，就越不应该在首屏就加载 JS 文件，这也是都建议将 <code>script</code> 标签放在 <code>body</code> 标签底部的原因。</p>
+
+<p>当然在当下，并不是说 <code>script</code> 标签必须放在底部，因为你可以给 <code>script</code> 标签添加 <code>defer</code> 或者 <code>async</code> 属性。</p>
+
+<p>当 <code>script</code> 标签加上 <code>defer</code> 属性以后，表示该 JS 文件会并行下载，但是会放到 HTML 解析完成后顺序执行，所以对于这种情况你可以把 <code>script</code> 标签放在任意位置。</p>
+
+<p>对于没有任何依赖的 JS 文件可以加上 <code>async</code> 属性，表示 JS 文件下载和解析不会阻塞渲染。</p>
+
+<h2 id="toc_6">重绘（Repaint）和回流（Reflow）</h2>
+
+<p>重绘和回流会在我们设置节点样式时频繁出现，同时也会很大程度上影响性能。</p>
+
+<ul>
+<li>  重绘是当节点需要更改外观而不会影响布局的，比如改变 <code>color</code> 就叫称为重绘</li>
+<li>  回流是布局或者几何属性需要改变就称为回流。</li>
+</ul>
+
+<p>回流<strong>必定</strong>会发生重绘，重绘<strong>不一定</strong>会引发回流。回流所需的成本比重绘高的多，改变父节点里的子节点很可能会导致父节点的一系列回流。</p>
+
+<p>以下几个动作可能会导致性能问题：</p>
+
+<ul>
+<li>  改变 <code>window</code> 大小</li>
+<li>  改变字体</li>
+<li>  添加或删除样式</li>
+<li>  文字改变</li>
+<li>  定位或者浮动</li>
+<li>  盒模型</li>
+</ul>
+
+<p>并且很多人不知道的是，重绘和回流其实也和 Eventloop 有关。</p>
+
+<ol>
+<li> 当 Eventloop 执行完 Microtasks 后，会判断 <code>document</code> 是否需要更新，因为浏览器是 60Hz 的刷新率，每 16.6ms 才会更新一次。</li>
+<li> 然后判断是否有 <code>resize</code> 或者 <code>scroll</code> 事件，有的话会去触发事件，所以 <code>resize</code> 和 <code>scroll</code> 事件也是至少 16ms 才会触发一次，并且自带节流功能。</li>
+<li> 判断是否触发了 media query</li>
+<li> 更新动画并且发送事件</li>
+<li> 判断是否有全屏操作事件</li>
+<li> 执行 <code>requestAnimationFrame</code> 回调</li>
+<li> 执行 <code>IntersectionObserver</code> 回调，该方法用于判断元素是否可见，可以用于懒加载上，但是兼容性不好</li>
+<li> 更新界面</li>
+<li> 以上就是一帧中可能会做的事情。如果在一帧中有空闲时间，就会去执行 <code>requestIdleCallback</code> 回调。</li>
+</ol>
+
+<p>以上内容来自于 <a href="https://link.juejin.im?target=https%3A%2F%2Fhtml.spec.whatwg.org%2Fmultipage%2Fwebappapis.html%23event-loop-processing-model">HTML 文档</a>。</p>
+
+<p>既然我们已经知道了重绘和回流会影响性能，那么接下来我们将会来学习如何减少重绘和回流的次数。</p>
+
+<h3 id="toc_7">减少重绘和回流</h3>
+
+<ul>
+<li><p>使用 <code>transform</code> 替代 <code>top</code>
+<code>js
+&lt;div class=&quot;test&quot;&gt;&lt;/div&gt;
+&lt;style&gt;
+  .test {
+    position: absolute;
+    top: 10px;
+    width: 100px;
+    height: 100px;
+    background: red;
+  }
+&lt;/style&gt;
+&lt;script&gt;
+  setTimeout(() =&gt; {
+    // 引起回流
+    document.querySelector(&#39;.test&#39;).style.top = &#39;100px&#39;
+  }, 1000)
+&lt;/script&gt;
+</code></p></li>
+<li><p>使用 <code>visibility</code> 替换 <code>display: none</code> ，因为前者只会引起重绘，后者会引发回流（改变了布局）</p></li>
+<li><p>不要把节点的属性值放在一个循环里当成循环里的变量</p>
+
+<div><pre><code class="language-none">for(let i = 0; i &lt; 1000; i++) {
+    // 获取 offsetTop 会导致回流，因为需要去获取正确的值
+    console.log(document.querySelector(&#39;.test&#39;).style.offsetTop)
+}</code></pre></div></li>
+<li><p>不要使用 <code>table</code> 布局，可能很小的一个小改动会造成整个 <code>table</code> 的重新布局</p></li>
+<li><p>动画实现的速度的选择，动画速度越快，回流次数越多，也可以选择使用 <code>requestAnimationFrame</code></p></li>
+<li><p>CSS 选择符<strong>从右往左</strong>匹配查找，避免节点层级过多</p></li>
+<li><p>将频繁重绘或者回流的节点设置为图层，图层能够阻止该节点的渲染行为影响别的节点。比如对于 <code>video</code> 标签来说，浏览器会自动将该节点变为图层。</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/29/1626fb6f33a6f9d7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+
+<p>设置节点为图层的方式有很多，我们可以通过以下几个常用属性可以生成新图层</p>
+
+<ul>
+<li>  <code>will-change</code></li>
+<li>  <code>video</code>、<code>iframe</code> 标签</li>
+</ul></li>
+</ul>
+
+<h2 id="toc_8">思考题</h2>
+
+<blockquote>
+<p>思考题：在不考虑缓存和优化网络协议的前提下，考虑可以通过哪些方式来最快的渲染页面，也就是常说的关键渲染路径，这部分也是性能优化中的一块内容。</p>
+</blockquote>
+
+<p>首先你可能会疑问，那怎么测量到底有没有加快渲染速度呢</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/27/16754b5a3511198f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+
+<p>当发生 <code>DOMContentLoaded</code> 事件后，就会生成渲染树，生成渲染树就可以进行渲染了，这一过程更大程度上和硬件有关系了。</p>
+
+<p><strong>提示如何加速：</strong></p>
+
+<ol>
+<li> 从文件大小考虑</li>
+<li> 从 <code>script</code> 标签使用上来考虑</li>
+<li> 从 CSS、HTML 的代码书写上来考虑</li>
+<li> 从需要下载的内容是否需要在首屏使用上来考虑</li>
+</ol>
+
+<p>以上提示大家都可以从文中找到，同时也欢迎大家踊跃在评论区写出你的答案。</p>
+
+<h2 id="toc_9">小结</h2>
+
+<p>以上就是我们这一章节的内容了。在这一章节中，我们了解了浏览器如何将文件渲染为页面，同时也掌握了一些优化的小技巧。这部分的内容理解起来不大容易，如果大家对于这个章节的内容存在疑问，欢迎在评论区与我互动。</p>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>手写 Promise</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">手写 Promise</h1>
+
+<p>在上一章节中我们了解了 <code>Promise</code> 的一些易错点，在这一章节中，我们会通过手写一个符合 Promise/A+ 规范的 <code>Promise</code> 来深入理解它，并且手写 <code>Promise</code> 也是一道大厂常考题，在进入正题之前，推荐各位阅读一下 <a href="https://link.juejin.im?target=http%3A%2F%2Fwww.ituring.com.cn%2Farticle%2F66566">Promise/A+ 规范</a>，这样才能更好地理解这个章节的代码。</p>
+
+<h2 id="toc_1">实现一个简易版 Promise</h2>
+
+<p>在完成符合 Promise/A+ 规范的代码之前，我们可以先来实现一个简易版 <code>Promise</code>，因为在面试中，如果你能实现出一个简易版的 <code>Promise</code> 基本可以过关了。</p>
+
+<p>那么我们先来搭建构建函数的大体框架</p>
+
+<div><pre><code class="language-none">const PENDING = &#39;pending&#39;
+const RESOLVED = &#39;resolved&#39;
+const REJECTED = &#39;rejected&#39;
+
+function MyPromise(fn) {
+  const that = this
+  that.state = PENDING
+  that.value = null
+  that.resolvedCallbacks = []
+  that.rejectedCallbacks = []
+  // 待完善 resolve 和 reject 函数
+  // 待完善执行 fn 函数
+}</code></pre></div>
+
+<ul>
+<li>  首先我们创建了三个常量用于表示状态，对于经常使用的一些值都应该通过常量来管理，便于开发及后期维护</li>
+<li>  在函数体内部首先创建了常量 <code>that</code>，因为代码可能会异步执行，用于获取正确的 <code>this</code> 对象</li>
+<li>  一开始 <code>Promise</code> 的状态应该是 <code>pending</code></li>
+<li>  <code>value</code> 变量用于保存 <code>resolve</code> 或者 <code>reject</code> 中传入的值</li>
+<li>  <code>resolvedCallbacks</code> 和 <code>rejectedCallbacks</code> 用于保存 <code>then</code> 中的回调，因为当执行完 <code>Promise</code> 时状态可能还是等待中，这时候应该把 <code>then</code> 中的回调保存起来用于状态改变时使用</li>
+</ul>
+
+<p>接下来我们来完善 <code>resolve</code> 和 <code>reject</code> 函数，添加在 <code>MyPromise</code> 函数体内部</p>
+
+<div><pre><code class="language-none">function resolve(value) {
+  if (that.state === PENDING) {
+    that.state = RESOLVED
+    that.value = value
+    that.resolvedCallbacks.map(cb =&gt; cb(that.value))
+  }
+}
+
+function reject(value) {
+  if (that.state === PENDING) {
+    that.state = REJECTED
+    that.value = value
+    that.rejectedCallbacks.map(cb =&gt; cb(that.value))
+  }
+}</code></pre></div>
+
+<p>这两个函数代码类似，就一起解析了</p>
+
+<ul>
+<li>  首先两个函数都得判断当前状态是否为等待中，因为规范规定只有等待态才可以改变状态</li>
+<li>  将当前状态更改为对应状态，并且将传入的值赋值给 <code>value</code></li>
+<li>  遍历回调数组并执行</li>
+</ul>
+
+<p>完成以上两个函数以后，我们就该实现如何执行 <code>Promise</code> 中传入的函数了</p>
+
+<div><pre><code class="language-none">try {
+  fn(resolve, reject)
+} catch (e) {
+  reject(e)
+}</code></pre></div>
+
+<ul>
+<li>  实现很简单，执行传入的参数并且将之前两个函数当做参数传进去</li>
+<li>  要注意的是，可能执行函数过程中会遇到错误，需要捕获错误并且执行 <code>reject</code> 函数</li>
+</ul>
+
+<p>最后我们来实现较为复杂的 <code>then</code> 函数</p>
+
+<div><pre><code class="language-none">MyPromise.prototype.then = function(onFulfilled, onRejected) {
+  const that = this
+  onFulfilled = typeof onFulfilled === &#39;function&#39; ? onFulfilled : v =&gt; v
+  onRejected =
+    typeof onRejected === &#39;function&#39;
+      ? onRejected
+      : r =&gt; {
+          throw r
+        }
+  if (that.state === PENDING) {
+    that.resolvedCallbacks.push(onFulfilled)
+    that.rejectedCallbacks.push(onRejected)
+  }
+  if (that.state === RESOLVED) {
+    onFulfilled(that.value)
+  }
+  if (that.state === REJECTED) {
+    onRejected(that.value)
+  }
+}</code></pre></div>
+
+<ul>
+<li><p>首先判断两个参数是否为函数类型，因为这两个参数是可选参数</p></li>
+<li><p>当参数不是函数类型时，需要创建一个函数赋值给对应的参数，同时也实现了透传，比如如下代码</p>
+
+<div><pre><code class="language-none">// 该代码目前在简单版中会报错
+// 只是作为一个透传的例子
+Promise.resolve(4).then().then((value) =&gt; console.log(value))</code></pre></div></li>
+<li><p>接下来就是一系列判断状态的逻辑，当状态不是等待态时，就去执行相对应的函数。如果状态是等待态的话，就往回调函数中 <code>push</code> 函数，比如如下代码就会进入等待态的逻辑</p>
+
+<div><pre><code class="language-none">new MyPromise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; {
+    resolve(1)
+  }, 0)
+}).then(value =&gt; {
+  console.log(value)
+})</code></pre></div></li>
+</ul>
+
+<p>以上就是简单版 <code>Promise</code> 实现，接下来一小节是实现完整版 <code>Promise</code> 的解析，相信看完完整版的你，一定会对于 <code>Promise</code> 的理解更上一层楼。</p>
+
+<h2 id="toc_2">实现一个符合 Promise/A+ 规范的 Promise</h2>
+
+<p>这小节代码需要大家配合规范阅读，因为大部分代码都是根据规范去实现的。</p>
+
+<p>我们先来改造一下 <code>resolve</code> 和 <code>reject</code> 函数</p>
+
+<div><pre><code class="language-none">function resolve(value) {
+  if (value instanceof MyPromise) {
+    return value.then(resolve, reject)
+  }
+  setTimeout(() =&gt; {
+    if (that.state === PENDING) {
+      that.state = RESOLVED
+      that.value = value
+      that.resolvedCallbacks.map(cb =&gt; cb(that.value))
+    }
+  }, 0)
+}
+function reject(value) {
+  setTimeout(() =&gt; {
+    if (that.state === PENDING) {
+      that.state = REJECTED
+      that.value = value
+      that.rejectedCallbacks.map(cb =&gt; cb(that.value))
+    }
+  }, 0)
+}</code></pre></div>
+
+<ul>
+<li>  对于 <code>resolve</code> 函数来说，首先需要判断传入的值是否为 <code>Promise</code> 类型</li>
+<li>  为了保证函数执行顺序，需要将两个函数体代码使用 <code>setTimeout</code> 包裹起来</li>
+</ul>
+
+<p>接下来继续改造 <code>then</code> 函数中的代码，首先我们需要新增一个变量 <code>promise2</code>，因为每个 <code>then</code> 函数都需要返回一个新的 <code>Promise</code> 对象，该变量用于保存新的返回对象，然后我们先来改造判断等待态的逻辑</p>
+
+<div><pre><code class="language-none">if (that.state === PENDING) {
+  return (promise2 = new MyPromise((resolve, reject) =&gt; {
+    that.resolvedCallbacks.push(() =&gt; {
+      try {
+        const x = onFulfilled(that.value)
+        resolutionProcedure(promise2, x, resolve, reject)
+      } catch (r) {
+        reject(r)
+      }
+    })
+
+    that.rejectedCallbacks.push(() =&gt; {
+      try {
+        const x = onRejected(that.value)
+        resolutionProcedure(promise2, x, resolve, reject)
+      } catch (r) {
+        reject(r)
+      }
+    })
+  }))
+}</code></pre></div>
+
+<ul>
+<li>  首先我们返回了一个新的 <code>Promise</code> 对象，并在 <code>Promise</code> 中传入了一个函数</li>
+<li>  函数的基本逻辑还是和之前一样，往回调数组中 <code>push</code> 函数</li>
+<li>  同样，在执行函数的过程中可能会遇到错误，所以使用了 <code>try...catch</code> 包裹</li>
+<li>  规范规定，执行 <code>onFulfilled</code> 或者 <code>onRejected</code> 函数时会返回一个 <code>x</code>，并且执行 <code>Promise</code> 解决过程，这是为了不同的 <code>Promise</code> 都可以兼容使用，比如 JQuery 的 <code>Promise</code> 能兼容 ES6 的 <code>Promise</code></li>
+</ul>
+
+<p>接下来我们改造判断执行态的逻辑</p>
+
+<div><pre><code class="language-none">if (that.state === RESOLVED) {
+  return (promise2 = new MyPromise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      try {
+        const x = onFulfilled(that.value)
+        resolutionProcedure(promise2, x, resolve, reject)
+      } catch (reason) {
+        reject(reason)
+      }
+    })
+  }))
+}</code></pre></div>
+
+<ul>
+<li>  其实大家可以发现这段代码和判断等待态的逻辑基本一致，无非是传入的函数的函数体需要异步执行，这也是规范规定的</li>
+<li>  对于判断拒绝态的逻辑这里就不一一赘述了，留给大家自己完成这个作业</li>
+</ul>
+
+<p>最后，当然也是最难的一部分，也就是实现兼容多种 <code>Promise</code> 的 <code>resolutionProcedure</code> 函数</p>
+
+<div><pre><code class="language-none">function resolutionProcedure(promise2, x, resolve, reject) {
+  if (promise2 === x) {
+    return reject(new TypeError(&#39;Error&#39;))
+  }
+}</code></pre></div>
+
+<p>首先规范规定了 <code>x</code> 不能与 <code>promise2</code> 相等，这样会发生循环引用的问题，比如如下代码</p>
+
+<div><pre><code class="language-none">let p = new MyPromise((resolve, reject) =&gt; {
+  resolve(1)
+})
+let p1 = p.then(value =&gt; {
+  return p1
+})</code></pre></div>
+
+<p>然后需要判断 <code>x</code> 的类型</p>
+
+<div><pre><code class="language-none">if (x instanceof MyPromise) {
+    x.then(function(value) {
+        resolutionProcedure(promise2, value, resolve, reject)
+    }, reject)
+}</code></pre></div>
+
+<p>这里的代码是完全按照规范实现的。如果 <code>x</code> 为 <code>Promise</code> 的话，需要判断以下几个情况：</p>
+
+<ol>
+<li> 如果 <code>x</code> 处于等待态，<code>Promise</code> 需保持为等待态直至 <code>x</code> 被执行或拒绝</li>
+<li> 如果 <code>x</code> 处于其他状态，则用相同的值处理 <code>Promise</code></li>
+</ol>
+
+<p>当然以上这些是规范需要我们判断的情况，实际上我们不判断状态也是可行的。</p>
+
+<p>接下来我们继续按照规范来实现剩余的代码</p>
+
+<div><pre><code class="language-none">let called = false
+if (x !== null &amp;&amp; (typeof x === &#39;object&#39; || typeof x === &#39;function&#39;)) {
+  try {
+    let then = x.then
+    if (typeof then === &#39;function&#39;) {
+      then.call(
+        x,
+        y =&gt; {
+          if (called) return
+          called = true
+          resolutionProcedure(promise2, y, resolve, reject)
+        },
+        e =&gt; {
+          if (called) return
+          called = true
+          reject(e)
+        }
+      )
+    } else {
+      resolve(x)
+    }
+  } catch (e) {
+    if (called) return
+    called = true
+    reject(e)
+  }
+} else {
+  resolve(x)
+}</code></pre></div>
+
+<ul>
+<li>  首先创建一个变量 <code>called</code> 用于判断是否已经调用过函数</li>
+<li>  然后判断 <code>x</code> 是否为对象或者函数，如果都不是的话，将 <code>x</code> 传入 <code>resolve</code> 中</li>
+<li>  如果 <code>x</code> 是对象或者函数的话，先把 <code>x.then</code> 赋值给 <code>then</code>，然后判断 <code>then</code> 的类型，如果不是函数类型的话，就将 <code>x</code> 传入 <code>resolve</code> 中</li>
+<li>  如果 <code>then</code> 是函数类型的话，就将 <code>x</code> 作为函数的作用域 <code>this</code> 调用之，并且传递两个回调函数作为参数，第一个参数叫做 <code>resolvePromise</code> ，第二个参数叫做 <code>rejectPromise</code>，两个回调函数都需要判断是否已经执行过函数，然后进行相应的逻辑</li>
+<li>  以上代码在执行的过程中如果抛错了，将错误传入 <code>reject</code> 函数中</li>
+</ul>
+
+<p>以上就是符合 Promise/A+ 规范的实现了，如果你对于这部分代码尚有疑问，欢迎在评论中与我互动。</p>
+
+<h2 id="toc_3">小结</h2>
+
+<p>这一章节我们分别实现了简单版和符合 Promise/A+ 规范的 <code>Promise</code>，前者已经足够应付大部分面试的手写题目，毕竟写出一个符合规范的 <code>Promise</code> 在面试中不大现实。后者能让你更加深入地理解 <code>Promise</code> 的运行原理，做技术的深挖者。</p>
+
+
+
+
+</body>
+
+</html>

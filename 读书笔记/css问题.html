@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>css问题</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0"><a href="#css-%E9%97%AE%E9%A2%98"></a>CSS 问题</h1>
+
+<p>本章节是<a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions/blob/master/questions/css-questions.md">前端开发者面试问题 - CSS 部分</a>的参考答案。 欢迎提出 PR 进行建议和指正！</p>
+
+<ul>
+<li>  <a href="#css-%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E6%98%AF%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E7%9A%84">CSS 选择器的优先级是如何计算的？</a></li>
+<li>  <a href="#%E9%87%8D%E7%BD%AEresettingcss-%E5%92%8C-%E6%A0%87%E5%87%86%E5%8C%96normalizingcss-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E4%BD%A0%E4%BC%9A%E9%80%89%E6%8B%A9%E5%93%AA%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%BA%E4%BB%80%E4%B9%88">重置（resetting）CSS 和 标准化（normalizing）CSS 的区别是什么？你会选择哪种方式，为什么？</a></li>
+<li>  <a href="#%E8%AF%B7%E9%98%90%E8%BF%B0float%E5%AE%9A%E4%BD%8D%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">请阐述<code>Float</code>定位的工作原理。</a></li>
+<li>  <a href="#%E8%AF%B7%E9%98%90%E8%BF%B0z-index%E5%B1%9E%E6%80%A7%E5%B9%B6%E8%AF%B4%E6%98%8E%E5%A6%82%E4%BD%95%E5%BD%A2%E6%88%90%E5%B1%82%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87stacking-context">请阐述<code>z-index</code>属性，并说明如何形成层叠上下文（stacking context）。</a></li>
+<li>  <a href="#%E8%AF%B7%E9%98%90%E8%BF%B0%E5%9D%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87block-formatting-context%E5%8F%8A%E5%85%B6%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">请阐述块格式化上下文（Block Formatting Context）及其工作原理。</a></li>
+<li>  <a href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E9%83%BD%E9%80%82%E7%94%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5">有哪些清除浮动的技术，都适用哪些情况？</a></li>
+<li>  <a href="#%E8%AF%B7%E8%A7%A3%E9%87%8A%E4%BB%80%E4%B9%88%E6%98%AF%E9%9B%AA%E7%A2%A7%E5%9B%BEcss-sprites%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0">请解释什么是雪碧图（css sprites），以及如何实现？</a></li>
+<li>  <a href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%B8%8D%E5%90%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98">如何解决不同浏览器的样式兼容性问题？</a></li>
+<li>  <a href="#%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8A%9F%E8%83%BD%E5%8F%97%E9%99%90%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E4%BE%9B%E9%A1%B5%E9%9D%A2-%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E6%8A%80%E6%9C%AF%E5%92%8C%E6%B5%81%E7%A8%8B">如何为功能受限的浏览器提供页面？ 使用什么样的技术和流程？</a></li>
+<li>  <a href="#%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%E7%9A%84%E6%96%B9%E5%BC%8F%E5%8F%AF%E4%BB%A5%E9%9A%90%E8%97%8F%E5%86%85%E5%AE%B9%E4%BD%BF%E5%85%B6%E4%BB%85%E9%80%82%E7%94%A8%E4%BA%8E%E5%B1%8F%E5%B9%95%E9%98%85%E8%AF%BB%E5%99%A8">有什么不同的方式可以隐藏内容（使其仅适用于屏幕阅读器）？</a></li>
+<li>  <a href="#%E4%BD%A0%E4%BD%BF%E7%94%A8%E8%BF%87%E6%A0%85%E6%A0%BC%E7%B3%BB%E7%BB%9F%E5%90%97%E5%81%8F%E7%88%B1%E5%93%AA%E4%B8%80%E4%B8%AA">你使用过栅格系统吗？偏爱哪一个？</a></li>
+<li>  <a href="#%E4%BD%A0%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8%E8%BF%87%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E6%88%96%E7%A7%BB%E5%8A%A8%E4%BC%98%E5%85%88%E7%9A%84%E5%B8%83%E5%B1%80">你是否使用过媒体查询或移动优先的布局？</a></li>
+<li>  <a href="#%E4%BD%A0%E7%86%9F%E6%82%89%E5%88%B6%E4%BD%9C-svg-%E5%90%97">你熟悉制作 SVG 吗？</a></li>
+<li>  <a href="#%E9%99%A4%E4%BA%86screen%E4%BD%A0%E8%BF%98%E8%83%BD%E8%AF%B4%E5%87%BA%E4%B8%80%E4%B8%AA-media-%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BE%8B%E5%AD%90%E5%90%97">除了<code>screen</code>，你还能说出一个 @media 属性的例子吗？</a></li>
+<li>  <a href="#%E7%BC%96%E5%86%99%E9%AB%98%E6%95%88%E7%9A%84-css-%E5%BA%94%E8%AF%A5%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88">编写高效的 CSS 应该注意什么？</a></li>
+<li>  <a href="#%E4%BD%BF%E7%94%A8-css-%E9%A2%84%E5%A4%84%E7%90%86%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88">使用 CSS 预处理的优缺点分别是什么？</a></li>
+<li>  <a href="#%E5%AF%B9%E4%BA%8E%E4%BD%A0%E4%BD%BF%E7%94%A8%E8%BF%87%E7%9A%84-css-%E9%A2%84%E5%A4%84%E7%90%86%E8%AF%B4%E8%AF%B4%E5%96%9C%E6%AC%A2%E5%92%8C%E4%B8%8D%E5%96%9C%E6%AC%A2%E7%9A%84%E5%9C%B0%E6%96%B9">对于你使用过的 CSS 预处理，说说喜欢和不喜欢的地方？</a></li>
+<li>  <a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8%E9%9D%9E%E6%A0%87%E5%87%86%E5%AD%97%E4%BD%93%E7%9A%84%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1">如何实现一个使用非标准字体的网页设计？</a></li>
+<li>  <a href="#%E8%A7%A3%E9%87%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E5%93%AA%E4%BA%9B%E5%85%83%E7%B4%A0%E4%B8%8E-css-%E9%80%89%E6%8B%A9%E5%99%A8%E5%8C%B9%E9%85%8D">解释浏览器如何确定哪些元素与 CSS 选择器匹配。</a></li>
+<li>  <a href="#%E6%8F%8F%E8%BF%B0%E4%BC%AA%E5%85%83%E7%B4%A0%E5%8F%8A%E5%85%B6%E7%94%A8%E9%80%94">描述伪元素及其用途。</a></li>
+<li>  <a href="#%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9%E7%9B%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%91%8A%E7%9F%A5%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%B8%B2%E6%9F%93%E5%B8%83%E5%B1%80">说说你对盒模型的理解，以及如何告知浏览器使用不同的盒模型渲染布局。</a></li>
+<li>  <a href="#--box-sizing-border-box-%E4%BC%9A%E4%BA%A7%E7%94%9F%E6%80%8E%E6%A0%B7%E7%9A%84%E6%95%88%E6%9E%9C"><code>* { box-sizing: border-box; }</code>会产生怎样的效果？</a></li>
+<li>  <a href="#display%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B"><code>display</code>的属性值都有哪些？</a></li>
+<li>  <a href="#inline%E5%92%8Cinline-block%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><code>inline</code>和<code>inline-block</code>有什么区别？</a></li>
+<li>  <a href="#relativefixedabsolute%E5%92%8Cstatic%E5%9B%9B%E7%A7%8D%E5%AE%9A%E4%BD%8D%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><code>relative</code>、<code>fixed</code>、<code>absolute</code>和<code>static</code>四种定位有什么区别？</a></li>
+<li>  <a href="#%E4%BD%A0%E4%BD%BF%E7%94%A8%E8%BF%87%E5%93%AA%E4%BA%9B%E7%8E%B0%E6%9C%89%E7%9A%84-css-%E6%A1%86%E6%9E%B6%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B%E5%AE%83%E4%BB%AC%E7%9A%84">你使用过哪些现有的 CSS 框架？你是如何改进它们的？</a></li>
+<li>  <a href="#%E4%BD%A0%E4%BA%86%E8%A7%A3-css-flexbox-%E5%92%8C-grid-%E5%90%97">你了解 CSS Flexbox 和 Grid 吗？</a></li>
+<li>  <a href="#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%9C%A8%E7%BC%96%E5%86%99%E7%BD%91%E7%AB%99%E6%97%B6%E5%93%8D%E5%BA%94%E5%BC%8F%E4%B8%8E%E7%A7%BB%E5%8A%A8%E4%BC%98%E5%85%88%E7%9A%84%E5%8C%BA%E5%88%AB">请解释在编写网站时，响应式与移动优先的区别。</a></li>
+<li>  <a href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94%E8%AE%BE%E8%AE%A1%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">响应式设计与自适应设计有何不同？</a></li>
+<li>  <a href="#%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E8%BF%87%E8%A7%86%E7%BD%91%E8%86%9C%E5%88%86%E8%BE%A8%E7%8E%87%E7%9A%84%E5%9B%BE%E5%BD%A2%E5%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E6%8A%80%E6%9C%AF">你有没有使用过视网膜分辨率的图形？当中使用什么技术？</a></li>
+<li>  <a href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E7%94%A8translate%E8%80%8C%E4%B8%8D%E7%94%A8%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%83%85%E5%86%B5%E7%9B%B8%E5%8F%8D">什么情况下，用<code>translate()</code>而不用绝对定位？什么时候，情况相反。</a></li>
+</ul>
+
+<h3 id="toc_1"><a href="#css-%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E6%98%AF%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E7%9A%84"></a>CSS 选择器的优先级是如何计算的？</h3>
+
+<p>浏览器通过优先级规则，判断元素展示哪些样式。优先级通过 4 个维度指标确定，我们假定以<code>a、b、c、d</code>命名，分别代表以下含义：</p>
+
+<ol>
+<li> <code>a</code>表示是否使用内联样式（inline style）。如果使用，<code>a</code>为 1，否则为 0。</li>
+<li> <code>b</code>表示 ID 选择器的数量。</li>
+<li> <code>c</code>表示类选择器、属性选择器和伪类选择器数量之和。</li>
+<li> <code>d</code>表示标签（类型）选择器和伪元素选择器之和。</li>
+</ol>
+
+<p>优先级的结果并非通过以上四个值生成一个得分，而是每个值分开比较。<code>a、b、c、d</code>权重从左到右，依次减小。判断优先级时，从左到右，一一比较，直到比较出最大值，即可停止。所以，如果<code>b</code>的值不同，那么<code>c</code>和<code>d</code>不管多大，都不会对结果产生影响。比如<code>0，1，0，0</code>的优先级高于<code>0，0，10，10</code>。</p>
+
+<p>当出现优先级相等的情况时，最晚出现的样式规则会被采纳。如果你在样式表里写了相同的规则（无论是在该文件内部还是其它样式文件中），那么最后出现的（在文件底部的）样式优先级更高，因此会被采纳。</p>
+
+<p>在写样式时，我会使用较低的优先级，这样这些样式可以轻易地覆盖掉。尤其对写 UI 组件的时候更为重要，这样使用者就不需要通过非常复杂的优先级规则或使用<code>!important</code>的方式，去覆盖组件的样式了。</p>
+
+<h6 id="toc_2"><a href="#%E5%8F%82%E8%80%83"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/">https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/</a></li>
+<li>  <a href="https://www.sitepoint.com/web-foundations/specificity/">https://www.sitepoint.com/web-foundations/specificity/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_3"><a href="#%E9%87%8D%E7%BD%AEresettingcss-%E5%92%8C-%E6%A0%87%E5%87%86%E5%8C%96normalizingcss-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E4%BD%A0%E4%BC%9A%E9%80%89%E6%8B%A9%E5%93%AA%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%BA%E4%BB%80%E4%B9%88"></a>重置（resetting）CSS 和 标准化（normalizing）CSS 的区别是什么？你会选择哪种方式，为什么？</h3>
+
+<ul>
+<li>  <strong>重置（Resetting）</strong>： 重置意味着除去所有的浏览器默认样式。对于页面所有的元素，像<code>margin</code>、<code>padding</code>、<code>font-size</code>这些样式全部置成一样。你将必须重新定义各种元素的样式。</li>
+<li>  <strong>标准化（Normalizing）</strong>： 标准化没有去掉所有的默认样式，而是保留了有用的一部分，同时还纠正了一些常见错误。</li>
+</ul>
+
+<p>当需要实现非常个性化的网页设计时，我会选择重置的方式，因为我要写很多自定义的样式以满足设计需求，这时候就不再需要标准化的默认样式了。</p>
+
+<h6 id="toc_4"><a href="#%E5%8F%82%E8%80%83-1"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://stackoverflow.com/questions/6887336/what-is-the-difference-between-normalize-css-and-reset-css">https://stackoverflow.com/questions/6887336/what-is-the-difference-between-normalize-css-and-reset-css</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_5"><a href="#%E8%AF%B7%E9%98%90%E8%BF%B0float%E5%AE%9A%E4%BD%8D%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"></a>请阐述<code>Float</code>定位的工作原理。</h3>
+
+<p>浮动（float）是 CSS 定位属性。浮动元素从网页的正常流动中移出，但是保持了部分的流动性，会影响其他元素的定位（比如文字会围绕着浮动元素）。这一点与绝对定位不同，绝对定位的元素完全从文档流中脱离。</p>
+
+<p>CSS 的<code>clear</code>属性通过使用<code>left</code>、<code>right</code>、<code>both</code>，让该元素向下移动（清除浮动）到浮动元素下面。</p>
+
+<p>如果父元素只包含浮动元素，那么该父元素的高度将塌缩为 0。我们可以通过清除（clear）从浮动元素后到父元素关闭前之间的浮动来修复这个问题。</p>
+
+<p>有一种 hack 的方法，是自定义一个<code>.clearfix</code>类，利用伪元素选择器<code>::after</code>清除浮动。<a href="https://css-tricks.com/all-about-floats/#article-header-id-4">另外还有一些方法</a>，比如添加空的<code>&lt;div&gt;&lt;/div&gt;</code>和设置浮动元素父元素的<code>overflow</code>属性。与这些方法不同的是，<code>clearfix</code>方法，只需要给父元素添加一个类，定义如下：</p>
+
+<p>.clearfix::after {
+  content: &#39;&#39;;
+  display: block;
+  clear: both;
+}</p>
+
+<p>值得一提的是，把父元素属性设置为<code>overflow: auto</code>或<code>overflow: hidden</code>，会使其内部的子元素形成块格式化上下文（Block Formatting Context），并且父元素会扩张自己，使其能够包围它的子元素。</p>
+
+<h6 id="toc_6"><a href="#%E5%8F%82%E8%80%83-2"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://css-tricks.com/all-about-floats/">https://css-tricks.com/all-about-floats/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_7"><a href="#%E8%AF%B7%E9%98%90%E8%BF%B0z-index%E5%B1%9E%E6%80%A7%E5%B9%B6%E8%AF%B4%E6%98%8E%E5%A6%82%E4%BD%95%E5%BD%A2%E6%88%90%E5%B1%82%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87stacking-context"></a>请阐述<code>z-index</code>属性，并说明如何形成层叠上下文（stacking context）。</h3>
+
+<p>CSS 中的<code>z-index</code>属性控制重叠元素的垂直叠加顺序。<code>z-index</code>只能影响<code>position</code>值不是<code>static</code>的元素。</p>
+
+<p>没有定义<code>z-index</code>的值时，元素按照它们出现在 DOM 中的顺序堆叠（层级越低，出现位置越靠上）。非静态定位的元素（及其子元素）将始终覆盖静态定位（static）的元素，而不管 HTML 层次结构如何。</p>
+
+<p>层叠上下文是包含一组图层的元素。 在一组层叠上下文中，其子元素的<code>z-index</code>值是相对于该父元素而不是 document root 设置的。每个层叠上下文完全独立于它的兄弟元素。如果元素 B 位于元素 A 之上，则即使元素 A 的子元素 C 具有比元素 B 更高的<code>z-index</code>值，元素 C 也永远不会在元素 B 之上.</p>
+
+<p>每个层叠上下文是自包含的：当元素的内容发生层叠后，整个该元素将会在父层叠上下文中按顺序进行层叠。少数 CSS 属性会触发一个新的层叠上下文，例如<code>opacity</code>小于 1，<code>filter</code>不是<code>none</code>，<code>transform</code>不是<code>none</code>。</p>
+
+<h6 id="toc_8"><a href="#%E5%8F%82%E8%80%83-3"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://css-tricks.com/almanac/properties/z/z-index/">https://css-tricks.com/almanac/properties/z/z-index/</a></li>
+<li>  <a href="https://philipwalton.com/articles/what-no-one-told-you-about-z-index/">https://philipwalton.com/articles/what-no-one-told-you-about-z-index/</a></li>
+<li>  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_9"><a href="#%E8%AF%B7%E9%98%90%E8%BF%B0%E5%9D%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87block-formatting-context%E5%8F%8A%E5%85%B6%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"></a>请阐述块格式化上下文（Block Formatting Context）及其工作原理。</h3>
+
+<p>块格式上下文（BFC）是 Web 页面的可视化 CSS 渲染的部分，是块级盒布局发生的区域，也是浮动元素与其他元素交互的区域。</p>
+
+<p>一个 HTML 盒（Box）满足以下任意一条，会创建块格式化上下文：</p>
+
+<ul>
+<li>  <code>float</code>的值不是<code>none</code>.</li>
+<li>  <code>position</code>的值不是<code>static</code>或<code>relative</code>.</li>
+<li>  <code>display</code>的值是<code>table-cell</code>、<code>table-caption</code>、<code>inline-block</code>、<code>flex</code>、或<code>inline-flex</code>。</li>
+<li>  <code>overflow</code>的值不是<code>visible</code>。</li>
+</ul>
+
+<p>在 BFC 中，每个盒的左外边缘都与其包含的块的左边缘相接。</p>
+
+<p>两个相邻的块级盒在垂直方向上的边距会发生合并（collapse）。更多内容请参考<a href="https://www.sitepoint.com/web-foundations/collapsing-margins/">边距合并（margin collapsing）</a>。</p>
+
+<h6 id="toc_10"><a href="#%E5%8F%82%E8%80%83-4"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context">https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context</a></li>
+<li>  <a href="https://www.sitepoint.com/understanding-block-formatting-contexts-in-css/">https://www.sitepoint.com/understanding-block-formatting-contexts-in-css/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_11"><a href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E9%83%BD%E9%80%82%E7%94%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5"></a>有哪些清除浮动的技术，都适用哪些情况？</h3>
+
+<ul>
+<li>  空<code>div</code>方法：<code>&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;</code>。</li>
+<li>  Clearfix 方法：上文使用<code>.clearfix</code>类已经提到。</li>
+<li>  <code>overflow: auto</code>或<code>overflow: hidden</code>方法：上文已经提到。</li>
+</ul>
+
+<p>在大型项目中，我会使用 Clearfix 方法，在需要的地方使用<code>.clearfix</code>。设置<code>overflow: hidden</code>的方法可能使其子元素显示不完整，当子元素的高度大于父元素时。</p>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_12"><a href="#%E8%AF%B7%E8%A7%A3%E9%87%8A%E4%BB%80%E4%B9%88%E6%98%AF%E9%9B%AA%E7%A2%A7%E5%9B%BEcss-sprites%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"></a>请解释什么是雪碧图（css sprites），以及如何实现？</h3>
+
+<p>雪碧图是把多张图片整合到一张上的图片。它被运用在众多使用了很多小图标的网站上（Gmail 在使用）。实现方法：</p>
+
+<ol>
+<li> 使用生成器将多张图片打包成一张雪碧图，并为其生成合适的 CSS。</li>
+<li> 每张图片都有相应的 CSS 类，该类定义了<code>background-image</code>、<code>background-position</code>和<code>background-size</code>属性。</li>
+<li> 使用图片时，将相应的类添加到你的元素中。</li>
+</ol>
+
+<p>好处：</p>
+
+<ul>
+<li>  减少加载多张图片的 HTTP 请求数（一张雪碧图只需要一个请求）。但是对于 HTTP2 而言，加载多张图片不再是问题。</li>
+<li>  提前加载资源，防止在需要时才在开始下载引发的问题，比如只出现在<code>:hover</code>伪类中的图片，不会出现闪烁。</li>
+</ul>
+
+<h6 id="toc_13"><a href="#%E5%8F%82%E8%80%83-5"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://css-tricks.com/css-sprites/">https://css-tricks.com/css-sprites/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_14"><a href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%B8%8D%E5%90%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98"></a>如何解决不同浏览器的样式兼容性问题？</h3>
+
+<ul>
+<li>  在确定问题原因和有问题的浏览器后，使用单独的样式表，仅供出现问题的浏览器加载。这种方法需要使用服务器端渲染。</li>
+<li>  使用已经处理好此类问题的库，比如 Bootstrap。</li>
+<li>  使用 <code>autoprefixer</code> 自动生成 CSS 属性前缀。</li>
+<li>  使用 Reset CSS 或 Normalize.css。</li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_15"><a href="#%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8A%9F%E8%83%BD%E5%8F%97%E9%99%90%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E4%BE%9B%E9%A1%B5%E9%9D%A2-%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E6%8A%80%E6%9C%AF%E5%92%8C%E6%B5%81%E7%A8%8B"></a>如何为功能受限的浏览器提供页面？ 使用什么样的技术和流程？</h3>
+
+<ul>
+<li>  优雅的降级：为现代浏览器构建应用，同时确保它在旧版浏览器中正常运行。</li>
+<li>  渐进式增强：构建基于用户体验的应用，但在浏览器支持时添加新增功能。</li>
+<li>  利用 <a href="https://caniuse.com/">caniuse.com</a> 检查特性支持。</li>
+<li>  使用 <code>autoprefixer</code> 自动生成 CSS 属性前缀。</li>
+<li>  使用 <a href="https://modernizr.com/">Modernizr</a>进行特性检测。</li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_16"><a href="#%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%E7%9A%84%E6%96%B9%E5%BC%8F%E5%8F%AF%E4%BB%A5%E9%9A%90%E8%97%8F%E5%86%85%E5%AE%B9%E4%BD%BF%E5%85%B6%E4%BB%85%E9%80%82%E7%94%A8%E4%BA%8E%E5%B1%8F%E5%B9%95%E9%98%85%E8%AF%BB%E5%99%A8"></a>有什么不同的方式可以隐藏内容（使其仅适用于屏幕阅读器）？</h3>
+
+<p>这些方法与可访问性（a11y）有关。</p>
+
+<ul>
+<li>  <code>visibility: hidden</code>：元素仍然在页面流中，并占用空间。</li>
+<li>  <code>width: 0; height: 0</code>：使元素不占用屏幕上的任何空间，导致不显示它。</li>
+<li>  <code>position: absolute; left: -99999px</code>： 将它置于屏幕之外。</li>
+<li>  <code>text-indent: -9999px</code>：这只适用于<code>block</code>元素中的文本。</li>
+<li>  Metadata： 例如通过使用 Schema.org，RDF 和 JSON-LD。</li>
+<li>  WAI-ARIA：如何增加网页可访问性的 W3C 技术规范。</li>
+</ul>
+
+<p>即使 WAI-ARIA 是理想的解决方案，我也会采用绝对定位方法，因为它具有最少的注意事项，适用于大多数元素，而且使用起来非常简单。</p>
+
+<h6 id="toc_17"><a href="#%E5%8F%82%E8%80%83-6"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a></li>
+<li>  <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA</a></li>
+<li>  <a href="http://a11yproject.com/">http://a11yproject.com/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_18"><a href="#%E4%BD%A0%E4%BD%BF%E7%94%A8%E8%BF%87%E6%A0%85%E6%A0%BC%E7%B3%BB%E7%BB%9F%E5%90%97%E5%81%8F%E7%88%B1%E5%93%AA%E4%B8%80%E4%B8%AA"></a>你使用过栅格系统吗？偏爱哪一个？</h3>
+
+<p>我使用 <code>float</code>-based 栅格系统，因为它相比 flex、grid 系统，拥有更多浏览器的支持。它已经在 Bootstrap 中使用多年，并且已经被证明是可行的。</p>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_19"><a href="#%E4%BD%A0%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8%E8%BF%87%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E6%88%96%E7%A7%BB%E5%8A%A8%E4%BC%98%E5%85%88%E7%9A%84%E5%B8%83%E5%B1%80"></a>你是否使用过媒体查询或移动优先的布局？</h3>
+
+<p>是的，一个例子就是根据窗口的尺寸改变导航的样式。</p>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_20"><a href="#%E4%BD%A0%E7%86%9F%E6%82%89%E5%88%B6%E4%BD%9C-svg-%E5%90%97"></a>你熟悉制作 SVG 吗？</h3>
+
+<p>是的，你可以使用内联CSS、嵌入式CSS部分或外部CSS文件对形状进行着色（包括指定对象上的属性）。在网上大部分SVG使用的是内联CSS，不过每个类型都有优点和缺点。</p>
+
+<p>通过设置<code>fill</code>和<code>stroke</code>属性，可以完成基本着色操作。<code>fill</code>可以设置内部的颜色，<code>stroke</code>可以设置周围绘制的线条的颜色。你可以使用与<code>HTML</code>中使用的CSS颜色命名方案相同的CSS颜色命名方案：颜色名称（即<code>red</code>）、RGB值（即<code>rgb(255,0,0)</code>）、十六进制值、RGBA值等等。</p>
+
+<p><rect x="10" y="10" width="100" height="100" stroke="blue" 
+  fill="purple" fill-opacity="0.5" stroke-opacity="0.8"/></p>
+
+<h6 id="toc_21"><a href="#%E5%8F%82%E8%80%83-7"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Fills_and_Strokes">https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Fills_and_Strokes</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_22"><a href="#%E9%99%A4%E4%BA%86screen%E4%BD%A0%E8%BF%98%E8%83%BD%E8%AF%B4%E5%87%BA%E4%B8%80%E4%B8%AA-media-%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BE%8B%E5%AD%90%E5%90%97"></a>除了<code>screen</code>，你还能说出一个 @media 属性的例子吗？</h3>
+
+<p>TODO</p>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_23"><a href="#%E7%BC%96%E5%86%99%E9%AB%98%E6%95%88%E7%9A%84-css-%E5%BA%94%E8%AF%A5%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88"></a>编写高效的 CSS 应该注意什么？</h3>
+
+<p>首先，浏览器从最右边的选择器，即关键选择器（key selector），向左依次匹配。根据关键选择器，浏览器从 DOM 中筛选出元素，然后向上遍历被选元素的父元素，判断是否匹配。选择器匹配语句链越短，浏览器的匹配速度越快。避免使用标签和通用选择器作为关键选择器，因为它们会匹配大量的元素，浏览器必须要进行大量的工作，去判断这些元素的父元素们是否匹配。</p>
+
+<p><a href="https://bem.info/">BEM (Block Element Modifier)</a> methodology recommends that everything has a single class, and, where you need hierarchy, that gets baked into the name of the class as well, this naturally makes the selector efficient and easy to override. <a href="https://bem.info/">BEM (Block Element Modifier)</a>原则上建议为独立的 CSS 类命名，并且在需要层级关系时，将关系也体现在命名中，这自然会使选择器高效且易于覆盖。</p>
+
+<p>搞清楚哪些 CSS 属性会触发重新布局（reflow）、重绘（repaint）和合成（compositing）。在写样式时，避免触发重新布局的可能。</p>
+
+<h6 id="toc_24"><a href="#%E5%8F%82%E8%80%83-8"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://developers.google.com/web/fundamentals/performance/rendering/">https://developers.google.com/web/fundamentals/performance/rendering/</a></li>
+<li>  <a href="https://csstriggers.com/">https://csstriggers.com/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_25"><a href="#%E4%BD%BF%E7%94%A8-css-%E9%A2%84%E5%A4%84%E7%90%86%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"></a>使用 CSS 预处理的优缺点分别是什么？</h3>
+
+<p>优点：</p>
+
+<ul>
+<li>  提高 CSS 可维护性。</li>
+<li>  易于编写嵌套选择器。</li>
+<li>  引入变量，增添主题功能。可以在不同的项目中共享主题文件。</li>
+<li>  通过混合（Mixins）生成重复的 CSS。</li>
+<li>  Splitting your code into multiple files. CSS files can be split up too but doing so will require a HTTP request to download each CSS file.</li>
+<li>  将代码分割成多个文件。不进行预处理的 CSS，虽然也可以分割成多个文件，但需要建立多个 HTTP 请求加载这些文件。</li>
+</ul>
+
+<p>缺点：</p>
+
+<ul>
+<li>  需要预处理工具。</li>
+<li>  重新编译的时间可能会很慢。</li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_26"><a href="#%E5%AF%B9%E4%BA%8E%E4%BD%A0%E4%BD%BF%E7%94%A8%E8%BF%87%E7%9A%84-css-%E9%A2%84%E5%A4%84%E7%90%86%E8%AF%B4%E8%AF%B4%E5%96%9C%E6%AC%A2%E5%92%8C%E4%B8%8D%E5%96%9C%E6%AC%A2%E7%9A%84%E5%9C%B0%E6%96%B9"></a>对于你使用过的 CSS 预处理，说说喜欢和不喜欢的地方？</h3>
+
+<p>喜欢：</p>
+
+<ul>
+<li>  绝大部分优点上题以及提过。</li>
+<li>  Less 用 JavaScript 实现，与 NodeJS 高度结合。</li>
+</ul>
+
+<p><strong>Dislikes:</strong></p>
+
+<ul>
+<li>  我通过<code>node-sass</code>使用 Sass，它用 C ++ 编写的 LibSass 绑定。在 Node 版本切换时，我必须经常重新编译。</li>
+<li>  Less 中，变量名称以<code>@</code>作为前缀，容易与 CSS 关键字混淆，如<code>@media</code>、<code>@import</code>和<code>@font-face</code>。</li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_27"><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8%E9%9D%9E%E6%A0%87%E5%87%86%E5%AD%97%E4%BD%93%E7%9A%84%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1"></a>如何实现一个使用非标准字体的网页设计？</h3>
+
+<p>使用<code>@font-face</code>并为不同的<code>font-weight</code>定义<code>font-family</code>。</p>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_28"><a href="#%E8%A7%A3%E9%87%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E5%93%AA%E4%BA%9B%E5%85%83%E7%B4%A0%E4%B8%8E-css-%E9%80%89%E6%8B%A9%E5%99%A8%E5%8C%B9%E9%85%8D"></a>解释浏览器如何确定哪些元素与 CSS 选择器匹配。</h3>
+
+<p>这部分与上面关于编写高效的 CSS 有关。浏览器从最右边的选择器（关键选择器）根据关键选择器，浏览器从 DOM 中筛选出元素，然后向上遍历被选元素的父元素，判断是否匹配。选择器匹配语句链越短，浏览器的匹配速度越快。</p>
+
+<p>例如，对于形如<code>p span</code>的选择器，浏览器首先找到所有<code>&lt;span&gt;</code>元素，并遍历它的父元素直到根元素以找到<code>&lt;p&gt;</code>元素。对于特定的<code>&lt;span&gt;</code>，只要找到一个<code>&lt;p&gt;</code>，就知道&#39;`已经匹配并停止继续匹配。</p>
+
+<h6 id="toc_29"><a href="#%E5%8F%82%E8%80%83-9"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://stackoverflow.com/questions/5797014/why-do-browsers-match-css-selectors-from-right-to-left">https://stackoverflow.com/questions/5797014/why-do-browsers-match-css-selectors-from-right-to-left</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_30"><a href="#%E6%8F%8F%E8%BF%B0%E4%BC%AA%E5%85%83%E7%B4%A0%E5%8F%8A%E5%85%B6%E7%94%A8%E9%80%94"></a>描述伪元素及其用途。</h3>
+
+<p>CSS 伪元素是添加到选择器的关键字，去选择元素的特定部分。它们可以用于装饰（<code>:first-line</code>，<code>:first-letter</code>）或将元素添加到标记中（与 content:...组合），而不必修改标记（<code>:before</code>，<code>:after</code>）。</p>
+
+<ul>
+<li>  <code>:first-line</code>和<code>:first-letter</code>可以用来修饰文字。</li>
+<li>  上面提到的<code>.clearfix</code>方法中，使用<code>clear: both</code>来添加不占空间的元素。</li>
+<li>  使用<code>:before</code>和<code>after</code>展示提示中的三角箭头。鼓励关注点分离，因为三角被视为样式的一部分，而不是真正的 DOM。如果不使用额外的 HTML 元素，只用 CSS 样式绘制三角形是不太可能的。</li>
+</ul>
+
+<h6 id="toc_31"><a href="#%E5%8F%82%E8%80%83-10"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://css-tricks.com/almanac/selectors/a/after-and-before/">https://css-tricks.com/almanac/selectors/a/after-and-before/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_32"><a href="#%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9%E7%9B%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%91%8A%E7%9F%A5%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%B8%B2%E6%9F%93%E5%B8%83%E5%B1%80"></a>说说你对盒模型的理解，以及如何告知浏览器使用不同的盒模型渲染布局。</h3>
+
+<p>CSS 盒模型描述了以文档树中的元素而生成的矩形框，并根据排版模式进行布局。每个盒子都有一个内容区域（例如文本，图像等）以及周围可选的<code>padding</code>、<code>border</code>和<code>margin</code>区域。</p>
+
+<p>CSS 盒模型负责计算：</p>
+
+<ul>
+<li>  块级元素占用多少空间。</li>
+<li>  边框是否重叠，边距是否合并。</li>
+<li>  盒子的尺寸。</li>
+</ul>
+
+<p>盒模型有以下规则：</p>
+
+<ul>
+<li>  块级元素的大小由<code>width</code>、<code>height</code>、<code>padding</code>、<code>border</code>和<code>margin</code>决定。</li>
+<li>  如果没有指定<code>height</code>，则块级元素的高度等于其包含子元素的内容高度加上<code>padding</code>（除非有浮动元素，请参阅下文）。</li>
+<li>  如果没有指定<code>width</code>，则非浮动块级元素的宽度等于其父元素的宽度减去父元素的<code>padding</code>。</li>
+<li>  元素的<code>height</code>是由内容的<code>height</code>来计算的。</li>
+<li>  元素的<code>width</code>是由内容的<code>width</code>来计算的。</li>
+<li>  默认情况下，<code>padding</code>和<code>border</code>不是元素<code>width</code>和<code>height</code>的组成部分。</li>
+</ul>
+
+<h6 id="toc_33"><a href="#%E5%8F%82%E8%80%83-11"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://www.smashingmagazine.com/2010/06/the-principles-of-cross-browser-css-coding/#understand-the-css-box-model">https://www.smashingmagazine.com/2010/06/the-principles-of-cross-browser-css-coding/#understand-the-css-box-model</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_34"><a href="#--box-sizing-border-box-%E4%BC%9A%E4%BA%A7%E7%94%9F%E6%80%8E%E6%A0%B7%E7%9A%84%E6%95%88%E6%9E%9C"></a><code>* { box-sizing: border-box; }</code>会产生怎样的效果？</h3>
+
+<ul>
+<li>  元素默认应用了<code>box-sizing: content-box</code>，元素的宽高只会决定内容（content）的大小。</li>
+<li>  <code>box-sizing: border-box</code>改变计算元素<code>width</code>和<code>height</code>的方式，<code>border</code>和<code>padding</code>的大小也将计算在内。</li>
+<li>  元素的<code>height</code> = 内容（content）的高度 + 垂直方向的<code>padding</code> + 垂直方向<code>border</code>的宽度</li>
+<li>  元素的<code>width</code> = 内容（content）的宽度 + 水平方向的<code>padding</code> + 水平方向<code>border</code>的宽度</li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_35"><a href="#display%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B"></a><code>display</code>的属性值都有哪些？</h3>
+
+<ul>
+<li>  <code>none</code>, <code>block</code>, <code>inline</code>, <code>inline-block</code>, <code>table</code>, <code>table-row</code>, <code>table-cell</code>, <code>list-item</code>.</li>
+</ul>
+
+<p>TODO</p>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_36"><a href="#inline%E5%92%8Cinline-block%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"></a><code>inline</code>和<code>inline-block</code>有什么区别？</h3>
+
+<p>我把<code>block</code>也加入其中，为了获得更好的比较。</p>
+
+<p><code>block</code></p>
+
+<p><code>inline-block</code></p>
+
+<p><code>inline</code></p>
+
+<p>大小</p>
+
+<p>填充其父容器的宽度。</p>
+
+<p>取决于内容。</p>
+
+<p>取决于内容。</p>
+
+<p>定位</p>
+
+<p>从新的一行开始，并且不允许旁边有 HTML 元素（除非是<code>float</code>）</p>
+
+<p>与其他内容一起流动，并允许旁边有其他元素。</p>
+
+<p>与其他内容一起流动，并允许旁边有其他元素。</p>
+
+<p>能否设置<code>width</code>和<code>height</code></p>
+
+<p>能</p>
+
+<p>能</p>
+
+<p>不能。 设置会被忽略。</p>
+
+<p>可以使用<code>vertical-align</code>对齐</p>
+
+<p>不可以</p>
+
+<p>可以</p>
+
+<p>可以</p>
+
+<p>边距（margin）和填充（padding）</p>
+
+<p>各个方向都存在</p>
+
+<p>各个方向都存在</p>
+
+<p>只有水平方向存在。垂直方向会被忽略。 尽管<code>border</code>和<code>padding</code>在<code>content</code>周围，但垂直方向上的空间取决于&#39;line-height&#39;</p>
+
+<p>浮动（float）</p>
+
+<h2 id="toc_37"></h2>
+
+<h2 id="toc_38"></h2>
+
+<p>就像一个<code>block</code>元素，可以设置垂直边距和填充。</p>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_39"><a href="#relativefixedabsolute%E5%92%8Cstatic%E5%9B%9B%E7%A7%8D%E5%AE%9A%E4%BD%8D%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"></a><code>relative</code>、<code>fixed</code>、<code>absolute</code>和<code>static</code>四种定位有什么区别？</h3>
+
+<p>经过定位的元素，其<code>position</code>属性值必然是<code>relative</code>、<code>absolute</code>、<code>fixed</code>或<code>sticky</code>。</p>
+
+<ul>
+<li>  <code>static</code>：默认定位属性值。该关键字指定元素使用正常的布局行为，即元素在文档常规流中当前的布局位置。此时 top, right, bottom, left 和 z-index 属性无效。</li>
+<li>  <code>relative</code>：该关键字下，元素先放置在未添加定位时的位置，再在不改变页面布局的前提下调整元素位置（因此会在此元素未添加定位时所在位置留下空白）。</li>
+<li>  <code>absolute</code>：不为元素预留空间，通过指定元素相对于最近的非 static 定位祖先元素的偏移，来确定元素位置。绝对定位的元素可以设置外边距（margins），且不会与其他边距合并。</li>
+<li>  <code>fixed</code>：不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。fixed 属性会创建新的层叠上下文。当元素祖先的 transform 属性非 none 时，容器由视口改为该祖先。</li>
+<li>  <code>sticky</code>：盒位置根据正常流计算(这称为正常流动中的位置)，然后相对于该元素在流中的 flow root（BFC）和 containing block（最近的块级祖先元素）定位。在所有情况下（即便被定位元素为 <code>table</code> 时），该元素定位均不对后续元素造成影响。当元素 B 被粘性定位时，后续元素的位置仍按照 B 未定位时的位置来确定。<code>position: sticky</code> 对 <code>table</code> 元素的效果与 <code>position: relative</code> 相同。</li>
+</ul>
+
+<h6 id="toc_40"><a href="#%E5%8F%82%E8%80%83-12"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://developer.mozilla.org/en/docs/Web/CSS/position">https://developer.mozilla.org/en/docs/Web/CSS/position</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_41"><a href="#%E4%BD%A0%E4%BD%BF%E7%94%A8%E8%BF%87%E5%93%AA%E4%BA%9B%E7%8E%B0%E6%9C%89%E7%9A%84-css-%E6%A1%86%E6%9E%B6%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B%E5%AE%83%E4%BB%AC%E7%9A%84"></a>你使用过哪些现有的 CSS 框架？你是如何改进它们的？</h3>
+
+<ul>
+<li>  <strong>Bootstrap</strong>： 更新周期缓慢。Bootstrap 4 已经处于 alpha 版本将近两年了。添加了在页面中广泛使用的微调按钮组件。</li>
+<li>  <strong>Semantic UI</strong>：源代码结构使得自定义主题很难理解。非常规主题系统的使用体验很差。外部库的路径需要硬编码（hard code）配置。变量重新赋值没有 Bootstrap 设计得好。</li>
+<li>  <strong>Bulma</strong>： 需要很多非语义的类和标记，显得很多余。不向后兼容，以至于升级版本后，会破坏应用的正常运行。</li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_42"><a href="#%E4%BD%A0%E4%BA%86%E8%A7%A3-css-flexbox-%E5%92%8C-grid-%E5%90%97"></a>你了解 CSS Flexbox 和 Grid 吗？</h3>
+
+<p>了解。Flexbox 主要用于一维布局，而 Grid 则用于二维布局。</p>
+
+<p>Flexbox 解决了 CSS 中的许多常见问题，例如容器中元素的垂直居中，粘性定位（sticky）的页脚等。Bootstrap 和 Bulma 基于 Flexbox，这是创建布局的推荐方式。我之前曾使用过 Flexbox，但在使用<code>flex-grow</code>时遇到了一些浏览器不兼容问题（Safari），我必须使用<code>inline-blocks</code>和手动计算百分比宽度，来重写我的代码，这种体验不是很好。</p>
+
+<p>Grid 创建基于栅格的布局，是迄今为止最直观的方法（最好是！），但目前浏览器支持并不广泛。</p>
+
+<h6 id="toc_43"><a href="#%E5%8F%82%E8%80%83-13"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://philipwalton.github.io/solved-by-flexbox/">https://philipwalton.github.io/solved-by-flexbox/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_44"><a href="#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%9C%A8%E7%BC%96%E5%86%99%E7%BD%91%E7%AB%99%E6%97%B6%E5%93%8D%E5%BA%94%E5%BC%8F%E4%B8%8E%E7%A7%BB%E5%8A%A8%E4%BC%98%E5%85%88%E7%9A%84%E5%8C%BA%E5%88%AB"></a>请解释在编写网站时，响应式与移动优先的区别。</h3>
+
+<p>TODO</p>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_45"><a href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94%E8%AE%BE%E8%AE%A1%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C"></a>响应式设计与自适应设计有何不同？</h3>
+
+<p>响应式设计和自适应设计都以提高不同设备间的用户体验为目标，根据视窗大小、分辨率、使用环境和控制方式等参数进行优化调整。</p>
+
+<p>响应式设计的适应性原则：网站应该凭借一份代码，在各种设备上都有良好的显示和使用效果。响应式网站通过使用媒体查询，自适应栅格和响应式图片，基于多种因素进行变化，创造出优良的用户体验。就像一个球通过膨胀和收缩，来适应不同大小的篮圈。</p>
+
+<p>自适应设计更像是渐进式增强的现代解释。与响应式设计单一地去适配不同，自适应设计通过检测设备和其他特征，从早已定义好的一系列视窗大小和其他特性中，选出最恰当的功能和布局。与使用一个球去穿过各种的篮筐不同，自适应设计允许使用多个球，然后根据不同的篮筐大小，去选择最合适的一个。</p>
+
+<h6 id="toc_46"><a href="#%E5%8F%82%E8%80%83-14"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://developer.mozilla.org/en-US/docs/Archive/Apps/Design/UI_layout_basics/Responsive_design_versus_adaptive_design">https://developer.mozilla.org/en-US/docs/Archive/Apps/Design/UI_layout_basics/Responsive_design_versus_adaptive_design</a></li>
+<li>  <a href="http://mediumwell.com/responsive-adaptive-mobile/">http://mediumwell.com/responsive-adaptive-mobile/</a></li>
+<li>  <a href="https://css-tricks.com/the-difference-between-responsive-and-adaptive-design/">https://css-tricks.com/the-difference-between-responsive-and-adaptive-design/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_47"><a href="#%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E8%BF%87%E8%A7%86%E7%BD%91%E8%86%9C%E5%88%86%E8%BE%A8%E7%8E%87%E7%9A%84%E5%9B%BE%E5%BD%A2%E5%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E6%8A%80%E6%9C%AF"></a>你有没有使用过视网膜分辨率的图形？当中使用什么技术？</h3>
+
+<p>我倾向于使用更高分辨率的图形（显示尺寸的两倍）来处理视网膜显示。更好的方法是使用媒体查询，像<code>@media only screen and (min-device-pixel-ratio: 2) { ... }</code>，然后改变<code>background-image</code>。</p>
+
+<p>对于图标类的图形，我会尽可能使用 svg 和图标字体，因为它们在任何分辨率下，都能被渲染得十分清晰。</p>
+
+<p>还有一种方法是，在检查了<code>window.devicePixelRatio</code>的值后，利用 JavaScript 将<code>&lt;img&gt;</code>的<code>src</code>属性修改，用更高分辨率的版本进行替换。</p>
+
+<h6 id="toc_48"><a href="#%E5%8F%82%E8%80%83-15"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://www.sitepoint.com/css-techniques-for-retina-displays/">https://www.sitepoint.com/css-techniques-for-retina-displays/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_49"><a href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E7%94%A8translate%E8%80%8C%E4%B8%8D%E7%94%A8%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%83%85%E5%86%B5%E7%9B%B8%E5%8F%8D"></a>什么情况下，用<code>translate()</code>而不用绝对定位？什么时候，情况相反。</h3>
+
+<p><code>translate()</code>是<code>transform</code>的一个值。改变<code>transform</code>或<code>opacity</code>不会触发浏览器重新布局（reflow）或重绘（repaint），只会触发复合（compositions）。而改变绝对定位会触发重新布局，进而触发重绘和复合。<code>transform</code>使浏览器为元素创建一个 GPU 图层，但改变绝对定位会使用到 CPU。 因此<code>translate()</code>更高效，可以缩短平滑动画的绘制时间。</p>
+
+<p>当使用<code>translate()</code>时，元素仍然占据其原始空间（有点像<code>position：relative</code>），这与改变绝对定位不同。</p>
+
+<h6 id="toc_50"><a href="#%E5%8F%82%E8%80%83-16"></a>参考</h6>
+
+<ul>
+<li>  <a href="https://www.paulirish.com/2012/why-moving-elements-with-translate-is-better-than-posabs-topleft/">https://www.paulirish.com/2012/why-moving-elements-with-translate-is-better-than-posabs-topleft/</a></li>
+</ul>
+
+<p><a href="#css-%E9%97%AE%E9%A2%98">[↑] 回到顶部</a></p>
+
+<h3 id="toc_51"><a href="#%E5%85%B6%E4%BB%96%E7%AD%94%E6%A1%88"></a>其他答案</h3>
+
+<ul>
+<li>  <a href="https://neal.codes/blog/front-end-interview-css-questions">https://neal.codes/blog/front-end-interview-css-questions</a></li>
+<li>  <a href="https://quizlet.com/28293152/front-end-interview-questions-css-flash-cards/">https://quizlet.com/28293152/front-end-interview-questions-css-flash-cards/</a></li>
+<li>  <a href="http://peterdoes.it/2015/12/03/a-personal-exercise-front-end-job-interview-questions-and-my-answers-all/">http://peterdoes.it/2015/12/03/a-personal-exercise-front-end-job-interview-questions-and-my-answers-all/</a></li>
+</ul>
+
+
+
+
+</body>
+
+</html>
