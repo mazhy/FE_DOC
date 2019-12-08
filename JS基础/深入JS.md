@@ -227,15 +227,98 @@ student = null
 这一做法适用于大多数全局变量和全局对象的属性, 局部变量会在他们离开执行环境时自动被解除引用
 
 
+##	面向对象
+对代码的一种抽象, 对外统一提供调用接口的编程思想
 
+###	基于类的面向对象和基于原型的面向对象
++	基于原型的面向对象方式中, 对象则是依靠构造器利用原型构造出来的
 
+###	名词
++	属性: 事物的特性
++ 	方法: 事物的功能
++  	对象:	事物的一个实例
++   原型: js函数中由prototype属性引用了一个对象,即原型对象
 
+### 闭包
+闭包是一个拥有许多变量和绑定了这些变量的环境的表达式(通常是一个函数)
 
+###	声明对象
+```js
+// 字面量方式
+var obj = {
+    name: 'zhagnsan',
+    say:function(){}
+}
 
+// new 
+var obj = new Object()
+obj.name = "zhangsan"
 
+//构造方法声明对象
+function test([参数]){
+    this.name = name
+}
 
+// 工厂方式
+function createObject(name, age){
+    var obj = new Object()
+    obj.name = name
+    return obj
+}
 
+var box = createObject('zhangsan', 100)
 
+// 原型模式
+function test(){}
+test.prototype.name = 'zhangsan'
+var obj = new test()
+
+//js中混合模式声明对象
+function test(v1, v2){
+    this.v1 = v1;
+    this.v2 = v2;
+}
+test.prototype.say = function(){}
+
+```
+
+###	遍历对象的属性和方法
+```js
+var ren = {}
+ren.name='zhangsan';
+ren.age = 11;
+for(var i in ren){
+	console.log(ren[i])
+}
+```
+
+###	封装
+把对象内部数据和操作细节进行隐藏
+
+###	原型
+是利用prototype添加属性和方法
+
+###	原型链
+js在创建对象(不论是普通对象还是函数对象)的时候, 都有一个叫做__ proto__ 的内置属性, 用于指向创建他的函数对象的原型对象prototype
+
+###	原型继承
+利用原型让一个引用类型继承另一个引用类型的属性和方法
+
+###	构造函数继承
+在子类内部构造父类的对象实现继承
+
+###	call和apply 的用法
++	call: 调用一个对象的一个方法, 以另一个对象替换当前对象
++ 	apply: 应用某一对象的一个方法, 用另一个对象替换当前对象
+
+###	ji面向对象的关键字
++	instanceof
++ 	delete
++  call
++  apply
++  arguments
++  callee: 代表自己
++  this
 
 
 
